@@ -1,0 +1,102 @@
+*{
+    
+    font-family:"hot-legend";
+}
+
+body{
+      background-image: url(../img/fondo_web.jpg);
+	  background-position: center center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  background-size: cover;
+        padding-top:3%;
+        padding-bottom: 3%;
+   
+
+}
+
+@font-face {
+font-family: "Hot-Legend";
+src: url(../fuente/Hot-Legend2.otf) format("opentype");
+}
+
+
+
+
+
+option{
+    font-family: sans-serif;
+}
+
+
+
+
+
+
+
+.fondo{
+    
+   	background-color: transparent;
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    border-bottom:3px solid #9CDBCB;
+    font-size: 20px;
+        
+    
+}
+
+.fondo:focus{
+    
+    background-color: rgba(156,219,203,0.5);
+    border-right: none;
+    border-top: none;
+    border-left: none;
+    border-bottom:5px solid #9CDBCB;
+}
+
+.botoncito{
+    font-family: "hot-legend";
+    font-size: 30px;
+    padding: 5px;
+    background-color: #9CDBCB;
+    border-color: #458976;
+    -webkit-box-shadow: 7px 7px 0px -2px rgba(69,137,118,0.75);
+    -moz-box-shadow: 7px 7px 0px -2px rgba(69,137,118,0.75);
+    box-shadow: 7px 7px 0px -2px rgba(69,137,118,0.75);
+}
+
+.regis{
+   font-family: "hot-legend";
+    font-size:30px;
+}
+
+.botoncito:hover{
+    background-color: #458976;
+    
+    
+}
+
+
+
+div > .efecto{
+    
+    margin-left: 10px;
+    cursor: pointer;
+    
+}
+
+.efecto:hover{
+    
+    -webkit-transform: scale(1.3);
+    -ms-transform: scale(1.3);
+    transform: scale(1.3);
+}
+
+.efecto:active{
+    
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+

@@ -1,0 +1,149 @@
+{% load static %}
+{% load widget_tweaks %}
+<html>
+	<head>
+
+
+		<link rel="stylesheet" href="{% static 'subir/css/jquery.Jcrop.css' %}" type="text/css" />
+		<link rel="stylesheet" href="{% static 'subir/css/bootstrap.min.css' %}">
+        
+
+
+	</head>
+	
+	<style>
+
+    
+            .uploader {
+                align-items: center;
+                display: block;
+                outline: 3px dashed rgba(0, 0, 0, 0.5);
+                outline-offset: 5px;
+            }
+        
+    </style>
+
+	<body id="caja">
+	
+        <form method="POST" class="" enctype="multipart/form-data" >
+                          
+                            {% csrf_token %}
+                            
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" style="background: none;">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+           
+            <div class="input-group col-10">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                       
+                 
+                
+                         
+                  
+                        Buscar..
+                <input type="file" name="image_file" id="image_file" class="form-control" onchange="fileSelectHandler()" style="display: none;">
+           
+                   
+                    </span>
+                </label>
+                <input type="text" class="form-control" style="height: 38px;" readonly>
+            </div>
+       
+       
+       
+        <button type="button" class="close col-auto mr-4" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+             
+        </button>
+
+      </div>
+      <div class="modal-body d-flex justify-content-center">
+
+      
+              <img id="preview" class="uploader" src="img/pool.jpg"> 
+                 
+      
+             
+        
+         
+          
+      </div>
+      <div class="modal-footer" style="border: none;">
+        <button type="button" id="texto" class="btn btn-primary" onclick="mandar()">Aplicar Recorte</button>
+        <button type="button" id="activo" class="btn btn-primary" data-dismiss="modal" onclick="convertir()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    .imagenrecort{
+            display:none;
+        }
+            </style>
+
+
+<div class="container">
+
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+		<!-- This is the image we're attaching Jcrop to -->
+           
+            
+		<!-- This is the form that our event handler fills -->
+            
+			<input type="text" id="x">
+			<input type="text" id="y">
+			<input type="text" id="w">
+			<input type="text" id="h">
+			
+	<div class="row justify-content-center">
+
+	<div class="col-auto">
+      <canvas id='canvas' style="display: none;">
+
+      </canvas>
+  </div>
+
+
+       
+<!--         <img src="" width="20%" class="img-fluid imagenrecort" id="aa">  -->
+        
+
+    
+</div>
+
+
+                            
+        <textarea type="text" style="display: block;" class="alo" id={% render_field form.img %}>
+              
+    </textarea>
+                            <button type="submit" class="btn btn-primary">SUBIR</button>
+  
+  
+
+     </form>
+
+
+<div class="row">
+    <div class="col">
+    </div>
+    
+</div>
+
+ 
+
+</div>  
+  
+<script src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'subir/js/jquery.Jcrop2.js' %}"></script>
+<script src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'subir/js/recortar - copia1555.js' %}"></script>   
+
+
+	</body>

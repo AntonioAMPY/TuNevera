@@ -1,0 +1,342 @@
+{% extends 'subir/base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+Album
+
+{% endblock %}
+       
+        {% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link  active" href="{% url 'album'%}" @click="aparecersecionxd">ALBUM</a>  
+        </li>
+        {% endblock %}
+
+
+
+    {% block contenedorotros %}
+
+    <form method="POST" action="{% url 'seccionveganos' %}">
+ 
+       {% csrf_token %}
+        <input type='hidden' id='albuminput' name="inputalbum">
+   
+   
+
+            <div id="nav-album"> 
+             <div class="hidden-xl-up" id="album_demastamanos">  
+                <div class="row">
+                    <div class="col-12 col-md-5">
+                       
+                        <div class="card">
+                           <input type="image" name="submit" src="{% static 'subir/img/veganos.jpg' %}" class="card-img img-fluid" alt="Card image">
+
+                            <div class="card-img-overlay">
+                                
+                             <!--VEGANOS-->
+
+                            </div>
+                            
+                            
+                        </div>
+                        
+  
+                    </div>
+                    
+                    <div class="col-12 col-md-5">
+                            
+                        <div class="card">
+                           <input type="image" name="submit" src="{% static 'subir/img/comida-rapida.jpg' %}" class="card-img img-fluid" alt="Card image">
+                            <div class="card-img-overlay">
+                               
+               
+                              <!--COMIDAS RAPIDAS-->
+ 
+                                
+                                
+                                
+                                
+                            </div>
+                            
+                            
+                        </div>
+                 
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                
+                <div class="row justify-content-end">
+                    <div class="col-12 col-md-5">
+                         <a href="javascript:(alert('TERCERA EDAD'))">
+                        <div class="card">
+                           <img src="{% static 'subir/img/tercera-edad.jpeg' %}" class="card-img img-fluid" alt="Card image">
+                            <div class="card-img-overlay">
+                               
+<!--TERCERA EDAD-->            
+
+                                
+                            </div>
+                            
+                            
+                        </div>
+                        
+                        </a>
+                        
+                    </div>
+                    
+                    <div class="col-12 col-md-5">
+                         <a href="javascript:(alert('NIÑOS'))">
+                        <div class="card">
+                           <img src="{% static 'subir/img/ni%C3%B1os-comiodas.jpg' %}" class="card-img img-fluid" alt="Card image">
+                            <div class="card-img-overlay">
+                       
+                                
+
+                            <!--niños-->
+                                
+                                
+                            </div>
+                            
+                            
+                        </div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                </div>
+                
+                <div class="row">
+                    <div class="col-12 col-md-5">
+                         <a href="javascript:(alert('DESAYUNO'))">
+                        <div class="card">
+                           <img src="{% static 'subir/img/dsayuno-comidas.jpg' %}" class="card-img img-fluid" alt="Card image">
+                            <div class="card-img-overlay">
+
+                                <!--desayuno -->
+                                
+                                
+                            </div>
+                            
+                            
+                        </div>
+                        
+  
+                        </a>
+                    </div>
+                    
+                    <div class="col-12 col-md-5">
+                         <a href="javascript:(alert('ALMUERZO'))">
+                        <div class="card">
+                           <img src="{% static 'subir/img/almuerzo-comidas.jpg' %}" class="card-img img-fluid" alt="Card image">
+
+                            <div class="card-img-overlay">
+                                
+                                    <!--Almuerzo -->
+                                
+                                
+                            </div>
+                            
+                            
+                        </div>
+                        </a>
+                        
+                    </div>
+                    
+                    
+                    
+                </div>
+                
+                                
+                <div class="row justify-content-end">
+                    <div class="col-12 col-md-5">
+                        <a href="javascript:(alert('CENA'))">
+                            <div class="card">
+                               <img src="{% static 'subir/img/cena-comidas.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                <div class="card-img-overlay">
+
+
+                                     <!--cena-->
+
+
+                                </div>
+
+
+                            </div>
+                        </a>
+  
+                        
+                    </div>
+                    
+                    <div class="col-12 col-md-5">
+                        <a href="javascript:(alert('VEGANOS'))">
+                            <div class="card">
+                               <img src="{% static 'subir/img/veganos.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                <div class="card-img-overlay">
+
+                                     <!--veganos-->
+
+                                </div>
+
+
+                            </div>
+                        </a>
+                    </div>
+                    
+                    
+                    
+                </div>
+            
+            
+            </div>
+            <!-- ver seccion del album en un tamaño extra extra largo-->
+             <div class="hidden-lg-down">  
+                <div class="row justify-content-xl-center" id="album-xl">
+                    <div class="col-auto my-2 mx-2">
+                             
+                             <div class="card">
+                             
+                             
+                            <input @click="albunes('veganos')" type="image" name="submit" src="{% static 'subir/img/veganos.jpg' %}">
+                                    <!--veganos-->
+                            
+
+                            </div>
+
+  
+                        
+                       </div>
+                    
+                    <div class="col-auto my-2 mx-2">
+                          
+                            <div class="card">
+                              
+                               <input @click="albunes('comidas rapidas')" type="image" name="submit"  src="{% static 'subir/img/comida-rapida.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                
+
+                                    <!--comidas rapidas -->
+                            
+
+
+                            
+                
+                    </div>
+                    
+                    
+                    
+                    </div>
+          
+                
+                    <div class="col-auto my-2 mx-2">
+                       
+                            <div class="card">
+                              
+                               <input @click="albunes('tercera')"  type="image" name="submit" src="{% static 'subir/img/tercera-edad.jpeg' %}" class="card-img img-fluid" alt="Card image">
+
+                            </div>
+                        
+                      
+                    </div>
+                    
+                    <div class="col-auto my-2 mx-2">
+            
+                        <div class="card">
+                          
+                           <input @click="albunes('niños')" type="image" name="submit"  src="{% static 'subir/img/ni%C3%B1os-comiodas.jpg' %}" class="card-img img-fluid" alt="Card image">
+                            <!--niños-->
+                            
+                        </div>
+                
+                    </div>
+                    
+                    
+       
+                    <div class="col-auto my-2 mx-2">
+                         
+                        <div class="card">
+                           <input @click="albunes('desayuno')" type="image" name="submit" src="{% static 'subir/img/dsayuno-comidas.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                 <!--desayuno-->
+                           
+                        </div>
+                        
+  
+                    
+                    </div>
+                    
+                    <div class="col-auto my-2 mx-2">
+                         
+                        <div class="card">
+                           <input @click="albunes('almuerzo')" type="image" name="submit" src="{% static 'subir/img/almuerzo-comidas.jpg' %}" class="card-img img-fluid" alt="Card image">
+                              <!--almuerzo-->
+                        </div>
+    
+                        
+                    </div>
+                    
+                    
+
+                
+                
+                    <div class="col-auto my-2 mx-2">
+                     
+                        <div class="card">
+                           <input @click="albunes('cena')" type="image" name="submit"   src="{% static 'subir/img/cena-comidas.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                
+                                <!--cena-->
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-auto my-2 mx-2">
+                 
+                        <div class="card">
+                           <input @click="albunes('veganos')" type="image" name="submit"  src="{% static 'subir/img/veganos.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                
+                                <!--veganos-->
+                        </div>
+
+                    </div>
+                    
+                </div>   
+
+            
+            
+            </div>
+            
+            
+            
+            </div>
+            </form> 
+        
+
+{% endblock %}
+
+
+{% block scriptsexternos %} 
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+
+{% endblock %}

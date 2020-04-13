@@ -138,3 +138,6 @@ dmypy.json
 cython_debug/
 
 media/*.png
+media/*.jpg
+media/*.gif
+media/

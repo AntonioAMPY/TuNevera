@@ -1,0 +1,287 @@
+
+
+
+
+{% extends 'subir/base.html'%}
+
+{% load static %}
+  
+  
+{% block title %}
+    Perfil
+{% endblock %}     
+   
+{% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album'%}" @click="aparecersecionxd">ALBUM</a>  
+        </li>
+{% endblock %}
+
+
+                        
+    
+                      
+
+{% block contenedorotros%}
+       
+<div class="modal fade" id="recortarfoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document" style="background: none;">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+           
+            <div class="input-group col-10">
+                <label class="input-group-btn">
+                    <span class="btn btn-primary">
+                       
+                 
+                
+                         
+                  
+                        Buscar..
+                <input type="file" name="image_file" id="image_file" class="form-control" onchange="fileSelectHandler()" style="display: none;">
+           
+                   
+                    </span>
+                </label>
+                <input type="text" class="form-control" style="height: 38px;" readonly>
+            </div>
+       
+       
+       
+        <button type="button" class="close col-auto mr-4" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+             
+        </button>
+
+      </div>
+      <div class="modal-body d-flex justify-content-center">
+
+      
+              <img id="preview" class="uploader" src="img/pool.jpg"> 
+                 
+      
+             
+        
+         
+          
+      </div>
+      <div class="modal-footer" style="border: none;">
+        <button type="button" id="texto" class="btn btn-primary" onclick="mandar()">Aplicar Recorte</button>
+        <button type="button" id="activo" class="btn btn-primary" data-dismiss="modal" onclick="convertir()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+       
+       
+       
+<div class="modal fade" id="cambiarcontraseña" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form action="/usuario/configuracion/" method="post">
+{% csrf_token %}
+  <div class="modal-dialog modal-lg" role="document" style="background: none;">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+       
+       
+       <h4 class="my-0 py-0">CAMBIO DE CONTRASEÑA</h4>
+        <button type="button" class="close my-0 py-0" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+             
+        </button>
+
+      </div>
+      <div class="modal-body">
+         
+
+   <div class="row">
+
+
+            <input type="hidden" name="procesa" value="pass">
+              <div class="col-12">
+                     <h4 style="font-family:'Hot-legend';">INGRESA TU CONTRASEÑA ACTUAL</h4>
+                    <input class="form-control" type="password" name="oldpass">
+      
+                </div>
+           <div class="col-12 mt-4" style="font-family:'Hot-legend';">
+                   <h4>INGRESA TU CONTRASEÑA NUEVA</h4>
+                    <input class="form-control" type="password" name="pass">
+                </div>
+                
+                <div class="col-12 mt-4" style="font-family:'Hot-legend';">
+                <h4>REPITE LA CONTRASEÑA NUEVA</h4>
+                 <input class="form-control" type="password" name="pass2">
+        </div>
+       
+</div>
+          
+      </div>
+      <div class="modal-footer" style="border: none;">
+        <button type="submit" class="btn btn-primary btn-block">Cambiar contraseña</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+       <div class="row justify-content-center my-md-4 py-1">
+           <div class="col-12 col-md-12 col-lg-10">
+            
+        
+  
+               <div class="card bg-faded">
+                    
+                   <div class="card-block">
+                      
+                   <div class="row justify-content-center">
+                       <div class="col-auto col-sm-5 col-md-auto align-self-center img-fluid"> 
+                           
+                           <div class="card bg-faded" style="border:none;">
+                       
+                            {% if avatares %}
+                        <img src="{{avatares}}" class="my-3 img-fluid" width="500px" id="visualizar">
+                              
+                            {% else %}
+                                  
+                        <img src="{% static 'subir/img/chef.png' %}" class="my-3 img-fluid" width="500px" id="visualizar">
+                              
+                             
+                              
+                            {% endif %}
+                              
+                               </div>
+                           <div class="w-100"></div>
+                           
+                           
+                           <a href="#" class="text-primary text-center h4" data-toggle="modal" data-target="#recortarfoto" style="cursor: pointer;"><p>Cambiar foto de perfil</p></a>
+                        
+                      
+                       </div>
+                       
+                     
+                       <div class="col-12 col-sm-7 my-4">
+                
+                    <form action="/usuario/configuracion/" method="post">
+                      <input type="hidden" name="procesa" value="profile">
+                       {% csrf_token %}
+                        
+                        <div class="form-group">
+                           
+                        <h5>firts name</h5>
+    
+                            <input class="form-control" type="text" name="firstname" placeholder="Nombre" value="{{ nombre }}">
+                          </div> 
+                          
+                           <div class="form-group">
+                            <h5>apellido</h5>
+                            <input class="form-control" type="text" name="lastname" placeholder="Apellido" value="{{ apellido }}">
+                             </div>         
+                                 
+                                 
+                                  
+                         <div class="form-group">
+                             <h5>  Correo electronico </h5> 
+                        <input class="form-control" type="text" name="correo" placeholder="E-Mail: " value="{{ email }}">
+                        
+             
+                      </div>
+                      
+                      <div class="form-group">
+                         <h5> Ciudad  <a href="#" class="float-right">Cambiar ciudad</a></h5>
+                          <input class="form-control" type="text" name="ubicacion" placeholder="Ubicacion" value="{{ ubicacion }}"><br>
+                          
+                      </div>
+                         
+                    <div class="form-group">
+                          <h5>biografia <a href="#" class="float-right">Cambiar biografia</a></h5>
+                             <textarea class="form-control" placeholder="Biografia corta(160 caracteres): " name="bio" maxlength="140" rows="5">{{ bio }}</textarea><br>
+                          
+                      </div>
+          
+                      <div class="form-group my-0">
+                  
+                           
+                         <h5>ingresa tu contraseña actual</h5>
+                        <input class="form-control my-0" type="password" name="oldpass" placeholder="Ingresa tu contraseña actual"><br>
+
+             
+        
+                          </div>
+                          
+                        <a href="" data-toggle="modal" data-target="#cambiarcontraseña">Cambiar contraseña</a>
+                           
+                         
+                            <textarea type="text" class="form-control" name="avatares" style="display:none;" id="alo">
+                                   {{avatares}}
+                            </textarea>
+                            
+                         
+                            
+                        
+               
+                          <button type="submit" class="btn btn-warning btn-block">Guardar Cambios</button>
+                      
+                      
+                      
+                       </form>
+                    
+                       
+                        </div>
+                        
+
+                        
+                                 
+           
+                         
+                           
+                           
+                    </div>
+                       
+                </div>
+               </div>
+               
+               
+           </div>
+       </div>
+  
+
+<input type="hidden" id="x">
+<input type="hidden" id="y">
+<input type="hidden" id="w">
+<input type="hidden" id="h">
+
+	
+
+
+      <canvas id='canvas' style="display: none;">
+
+      </canvas>
+
+
+
+
+{% endblock %}
+
+{% block scriptsexternos %}
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'subir/js/jquery.Jcrop2.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'subir/js/recortar - copia15.js' %}"></script>  
+{% endblock %}

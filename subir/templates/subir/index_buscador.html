@@ -1,0 +1,78 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+
+<html>
+    
+    
+    <head>
+        
+        <title>BUSCADOR</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="{% static 'subir/css/bootstrap.min.css' %}" />
+    </head>
+    
+    <body>
+        <div class="container justify-content-center">
+            
+               
+               
+                <div class="rows justify-content-center">
+                
+                <div class="col-auto">
+                   
+                <h3 class="text-center">Buscar</h3>
+                
+                        {% csrf_token %}
+
+                        
+                        <form action="" method="post" ><!-- enctype="multipart/form-data" -->
+                            {% csrf_token %}
+                                <div class="input-group mb-4">
+                                  <input type="text" class="form-control" id="buscador" name="buscador">
+                                                              
+                                  <div class="input-group-append">
+                                    <button class="btn btn-primary input-group-text" type="submit">A cocinar</button>
+                                  </div>
+                                 </div>
+                        </form>
+
+                    
+                    <div class="table-responsive">
+                                           
+                        <table class="table table-striped table-hover table-sm" id="buscador_resultados">
+                            <thead>
+                                <tr>
+                                    <th>Nombre_Receta</th>
+                                    <th>Calorias</th>               
+                                    <th>Carbohidratos</th>               
+                                </tr>
+                            </thead>
+                        <tbody>
+                        {% for p in per %}
+                            <tr>
+                               
+                                <td>{{p.nombre}}</td>
+                                <td>{{p.calorias}}</td>
+                                <td>{{p.carbohidratos}}</td> 
+                            </tr>
+                        {% endfor %}
+                        
+                        </tbody>
+                        
+                        </table>
+                    </div>
+                    
+
+                    
+                </div>
+            </div>
+        </div>
+        
+            
+        <script src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'subir/js/ajax22.js' %}"></script>
+    </body>
+</html>

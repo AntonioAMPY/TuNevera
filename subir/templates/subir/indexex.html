@@ -1,0 +1,363 @@
+{% extends 'subir/base.html' %}
+
+
+{% load static %}
+
+{% block title %}
+    Inicio
+{% endblock %}   
+
+    {% block tabactive1 %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 'index' %}">INICIO</a>
+    </li>
+<!-- tab de categorias --> 
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+    </li>  
+
+<!-- tab de ve a cocinar! -->  
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+    </li>  
+
+<!-- tab de album -->    
+
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'album' %}">ALBUM</a>  
+    </li>
+    {% endblock %}
+
+         {% block contenedorotros %}
+      
+            <div id="nav-inicio">
+                <div class="row justify-content-md-center justify-content-xl-start">    
+                    <div class="col-12 col-md-10 col-lg-10 col-xl-6 nombresusersrecetas">
+                        
+                        
+              
+        {% for receta in Rec %}
+
+  
+                    {% if forloop.counter|divisibleby:2  %}       
+
+            <a href="{% url 'usuario:profile' receta.user %}" class="my-0 d-flex justify-content-end text-uppercase">{{ receta.user }}</a>  
+
+                                <hr class="mt-0 mb-2">  
+
+                                <div class="media">
+
+                                    <div class="media-body row justify-content-between">
+
+                                        <div class="col-4">
+                                            <span class="text-muted fecha">{{receta.fecha}} </span> 
+                                        </div>
+
+                                        <div class="col-auto mr-4">
+                                            <a href="{% url 'receta_detalle' receta.pk %}" class="h5 text-uppercase">  {{receta.nombre}} </a>   
+                                        </div>    
+                                        <div class="col-12">    
+                                        <p class="text-justify mr-2">
+                                        {{receta.instrucciones}}
+
+                                        </p>
+                                            </div>
+                                    </div> 
+                                            <img src="{{ receta.imagen.url }}" width="20%" class="img-fluid">  
+                               </div>
+
+                       
+                          
+                          {% else %}
+                                       
+
+                        <a href="{% url 'usuario:profile' receta.user %}" class="my-0 d-flex text-uppercase">{{ receta.user }}</a>
+                        <hr class="mt-0 mb-2">  
+                       <!-- clase media para estructurar las recetas publicadas y los comentarios -->
+                        <div class="media">
+                          <!--imagen de receta publicada -->
+                         <img src="{{ receta.imagen.url }}" width="20%" class="img-fluid"> 
+                           
+                            <div class="media-body row justify-content-between">
+                                
+                                <div class="col-auto ml-4">
+                                    <a href="{% url 'receta_detalle' receta.pk %}" class="h5 text-uppercase">{{receta.nombre}}</a>
+                                </div>
+                                
+                                <div class="col-4">
+                                    <span class="text-muted float-right fecha">{{receta.fecha}}</span>
+                                </div>
+                                <div class="col-12">
+                                    <p class="text-justify ml-2">
+                                             {{receta.instrucciones}}
+
+                                    </p>
+                                </div>    
+                                    
+                            </div> 
+                        
+                       </div>
+                           
+                       {% endif %}
+                        
+                           
+                            {% endfor %}    
+                          <!-- ahora un media hacia la derecha -->                 
+                      
+               
+                    
+                    
+                    <div class="sidebar hidden-lg-down col-md-6 my-3">
+                        
+                    
+                    <div class="tab-content">
+                        <!-- carousel de sugerencias -->
+                        <div class="tab-pane active " id="sugerencias" role="tabpanel">
+        
+                        
+                            <div id="primary-carousel" class="carousel slide" data-ride="carousel">
+                              <ol class="carousel-indicators">
+                                <li data-target="#primary-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#primary-carousel" data-slide-to="1"></li>
+                                <li data-target="#primary-carousel" data-slide-to="2"></li>
+                              </ol>
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <!-- primer item donde ira la primera foto, esta estructura es para poder hacer la foto responsive -->
+                                    <div class="card">
+                                      
+                                       <img src="{% static 'subir/img/carousel1.jpg' %}" class="card-img img-fluid" alt="Card image">
+
+                                        <div class="card-img-overlay">
+                                           <!-- caption, es decir, mensaje dentro de la imagen de la seccion del carousel-->
+                                            <div class="carousel-caption d-block ">
+                                                <h4>Titulo de la Imagen</h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, possimus!</p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <div class="carousel-item">
+                                   <!-- segundo item donde ira la segunda foto -->
+                                    <div class="card">
+                                       <img src="{% static 'subir/img/carousel2.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                       
+                                        <div class="card-img-overlay">
+                                            <div class="carousel-caption d-block ">
+                                                <h4>Titulo de la Imagen</h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, possimus!</p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                   <!-- tercer item donde ira la tercera foto -->
+                                    <div class="card">
+                                       <img src="{% static 'subir/img/carousel3.jpg' %}" class="card-img img-fluid" alt="Card image">
+
+                                        <div class="card-img-overlay">
+                                            <div class="carousel-caption d-block ">
+                                                <h4>Titulo de la Imagen</h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, possimus!</p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                              </div>
+                              <!-- flechas de next y prev para retroceder y avanzar en los items del carousel -->
+                              <a class="carousel-control-prev" href="#primary-carousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#primary-carousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+
+                    </div>
+                        
+                        <!-- carousel de top-->
+                        <div class="tab-pane fade" id="top" role="tabpanel">
+                            <div id="secondary-carousel" class="carousel slide" data-ride="carousel">
+                              <ol class="carousel-indicators">
+                                <li data-target="#secondary-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#secondary-carousel" data-slide-to="1"></li>
+                              </ol>
+                              <div class="carousel-inner">
+                               
+                               {% for re in filtro_fecha %}
+                               
+                               
+                               {% if forloop.first %}
+                                <div class="carousel-item active">
+                                    <div class="card">
+                                       <img src="{{re.imagen.url}}" class="card-img img-fluid" alt="Card image">
+                                       
+                                        <div class="card-img-overlay">
+                                            <div class="carousel-caption d-block ">
+                                                <h4>{{re.nombre}}</h4>
+                                                <p>{{re.instrucciones}}</p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                
+                                
+                            {% else %}
+                               
+                                <div class="carousel-item">
+                                    <div class="card">
+                                       <img src="{{re.imagen.url}}" class="card-img img-fluid" alt="Card image">
+                                       
+                                        <div class="card-img-overlay">
+                                            <div class="carousel-caption d-block ">
+                                                <h4>{{re.nombre}}</h4>
+                                                <p>{{re.instrucciones}}</p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                
+                            {% endif %}
+
+                            {% endfor %}
+                              </div>
+                              <a class="carousel-control-prev" href="#secondary-carousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#secondary-carousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+                        </div>
+                        
+                        <!-- carousel de lo mas votado!-->
+                        
+                        <div class="tab-pane fade" id="votado" role="tabpanel">
+                            <div id="tersary-carousel" class="carousel slide" data-ride="carousel">
+                              <ol class="carousel-indicators">
+                                <li data-target="#tersary-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#tersary-carousel" data-slide-to="1"></li>
+                                <li data-target="#tersary-carousel" data-slide-to="2"></li>
+                              </ol>
+                              <div class="carousel-inner">
+                               
+                                {% for off in usuarios_ff %}
+                                    
+                                {% if forloop.first %}
+
+                                <div class="carousel-item active">
+                                    <div class="card">
+                                       <img src="{% static 'subir/img/carousel1.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                       
+                                        <div class="card-img-overlay text-center text-danger">
+                                            <div class="carousel-caption d-block ">
+                                                <h4>{{off.followed}}</h4>
+                                                <img src="{{avatares2}}" alt="">
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, possimus!</p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                
+                                
+                            {% else %}
+                               <div class="carousel-item ">
+                                    <div class="card">
+                                       <img src="{% static 'subir/img/carousel1.jpg' %}" class="card-img img-fluid" alt="Card image">
+                                       
+                                        <div class="card-img-overlay text-center text-danger">
+                                            <div class="carousel-caption d-block ">
+                                                <h4>{{off.followed}}</h4>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, possimus!</p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                
+                                
+                                 {% endif %}
+                                
+                                {% endfor %}
+                              
+                              </div>
+                              <a class="carousel-control-prev" href="#tersary-carousel" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              <a class="carousel-control-next" href="#tersary-carousel" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+
+                        </div>
+                    </div>
+                        
+                    <!-- botones para ir a los diferentes carousels -->
+                    
+                    <ul class="colorgris nav nav-pills justify-content-between" role="tablist" id="etc">
+                       
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#sugerencias">SUGERENCIAS</a>
+                        </li>  
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#top" >TOP</a>
+                        </li>  
+
+
+                        <li class="nav-item">
+                            <a class="nav-link hidden-md-down" data-toggle="tab" href="#votado">LO MAS VOTADO!</a>  
+                            <a class="nav-link hidden-lg-up" data-toggle="tab" href="#votado">VOTOS!</a>  
+                        </li>     
+                        
+             
+                            
+               
+
+                    </ul>
+                        
+                    </div>
+                </div>    
+            </div>
+            <!-- seccion de categorias del menu principal-->
+        
+        {% endblock %}
+        
+
+{% block scriptsexternos %} 
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+
+{% endblock %}

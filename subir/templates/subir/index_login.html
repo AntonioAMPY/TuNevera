@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+{% load static %}
+
+
+
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="{% static 'subir/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'subir/css/login2.css' %}">
+        <title>LOGIN</title>
+    </head>
+    
+    
+    <body>
+    
+<div class="modal fade" id="registro" tabindex="-1" role="dialog" aria-labelledby="registrarse" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content"> <!-- esta etiqueta para editar el fondo -->
+      <div class="modal-header">
+        <h1 class="modal-title" id="registrarse"><img src="{% static 'subir/img/logott.png' %}" width="25%"> REGISTRO DE USUARIOS</h1>
+        <button type="button" class="close align-self-start" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+       <form action="" method="">   
+      <div class="modal-body mb-0">
+        
+    <div class="container-fluid" id="contenedor">
+       
+        <div class="row justify-content-center">
+                 <!-- LA PRIMERA COLUMNA ES EL FORMULARIO -->
+               <div class="col-12 register rounded">
+                <!-- el logo encerrado en un span para centrarlo -->   
+                                          
+                  
+                    <h3 class="lead mb-3">NOMBRE DE USUARIO </h3>
+                    <div class="form-group" :class="{'has-success':validacion2,'has-danger':error2}">
+                       <input type="text" @keyup="validacionuser" id="nombreus" class="form-control" :class="{'form-control-success':validacion2,'form-control-danger':error2}" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+[0-9]+" maxlength="30" required> 
+                       <span class="form-control-feedback" v-show="validacion2">nombre de usuario valido</span>
+                       <span class="form-control-feedback" v-show="error2">nombre de usuario invalido</span>
+            
+                    </div>
+                      <!--<small class="form-text text-muted mb-1">Maximo 30 caracteres Debe empezar por una letra y terminar con un numero</small> -->
+                   
+                   
+                   
+                    <h3 class="lead mb-3">CORREO ELECTRONICO</h3>
+                    <div class="form-group" :class="{'has-success':validacion,'has-danger':error}">
+                        <input @keyup="validacioncorreo" type="email" name="email" id="validar" class="form-control" pattern="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" :class="{'form-control-success':validacion,'form-control-danger':error}" required>
+                        <span class="form-control-feedback" v-show="validacion">correo valido</span>
+                        <span class="form-control-feedback" v-show="error">correo invalido</span>
+                    </div>
+                    
+                     <!--<small class="form-text text-muted mb-1">Ingresa un correo electronico: ejemplo1@hotmail.com</small>  -->
+                    
+                    <h3 class="lead mb-3">NOMBRES </h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <h3 class="lead mb-3">APELLIDOS </h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" required>
+                    </div>
+
+
+                    <h3 class="lead mb-3">CIUDAD: </h3>
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option></option>
+                            <option>Medellin</option>
+                            <option>Manizales</option>
+                            <option>Bucaramanga</option>
+                            <option>Medellin</option>
+                            <option>Medellin</option>
+                            <option>Medellin</option>
+                            <option>Medellin</option>
+                            <option>Medellin</option>
+                        </select>
+                    </div>
+
+                   <!-- <small class="form-text text-muted mb-1">Maximo 30 caracteres, Minimo 8 y debe de tener por lo menos un numero</small>  -->
+                   
+                   <h3 class="lead mb-3">CONTRASEÑA </h3>
+                    
+                    <div class="form-group" :class="{'has-danger':debil,'has-warning':aceptable,'has-success':fuerte,}">
+                        <input id="clave" type="password" @keyup="validacionclave" class="clave form-control" :class="{'form-control-danger':debil,'form-control-warning':aceptable,'form-control-success':fuerte}" pattern="^(?=\w*\d)^([A-Za-z])\S{8,16}$" maxlength="30" required>
+                        <span class="form-control-feedback" v-show="debil">contraseña debil</span>
+                        <span class="form-control-feedback" v-show="aceptable">contraseña aceptable</span>
+                        <span class="form-control-feedback" v-show="fuerte">contraseña fuerte</span>
+                    </div>
+
+                     <h3 class="lead mb-3">CONFIRMAR CONTRASEÑA </h3>
+
+                    <div class="form-group" :class="{'has-success':coinciden,'has-danger':nocoinciden}">
+                        <input type="password" id="confirmacionclave" @keyup="validacionclave" class="clave form-control" :class="{'form-control-success':coinciden,'form-control-danger':nocoinciden}" required>
+                        <span class="form-control-feedback" v-show="coinciden">Las contraseñas coinciden</span>
+                        <span class="form-control-feedback" v-show="nocoinciden">Las contraseñas no coinciden</span>
+           
+                    </div>   
+                    <!-- estas con clases de bootstrap para ponerle el estilo actual a los tipo checkbox,radio y select -->
+                    <div class="form-check mb-0">
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" required>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description" style="font-family: sans-serif;"> Acepto terminos y condiciones</span>
+                        </label>    
+                    </div>
+            </div>
+ 
+        </div>
+        
+        
+        
+    </div>
+    
+      </div>
+       
+      <div class="modal-footer mt-0 pt-0 px-4" style="border: none;">
+        <button type="submit" class="btn btn-info btn-block regis">REGISTRATE!</button>
+        
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+        
+        
+        <div class="container">  
+ 
+   
+            <div class="row justify-content-center">
+           
+               <div class="col-12 col-sm-6 col-xl-8">
+                 <div class="card" style="background:none;border:none;">
+                  
+                 <div class="card-body" >
+          
+                  <form action="indexex.html" class="mb-2">
+                        <div class="form-group">
+                            <p class="text-center hidden-sm-up"> <img src="{% static 'subir/img/logott3.png' %}" class="img-fluid">  </p>
+                            <p class="text-center hidden-xs-down"><img src="{% static 'subir/img/nombre_titulo.png' %}" class="img-fluid"> </p> 
+                            <input type="text" class="form-control fondo" name="nombre" id="nombre" placeholder="Nombre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <p class="text-center hidden-xs-down" for="pass"><img src="{% static 'subir/img/contrasenia_titulo.png' %}" class="img-fluid"> </p>
+                            <input type="password" class="form-control fondo" name="pass" id="pass" placeholder="Contraseña" required>
+                        </div>
+
+                        <button class="btn btn-primary btn-block botoncito" type="submit" >INGRESAR</button>
+                    </form>
+                    </div>
+                </div>
+                    <button class="btn btn-primary btn-block botoncito" type="button" data-toggle="modal" data-target="#registro">REGISTRARSE</button>
+            
+               </div>
+            
+      <div class="w-100"></div>
+            
+                <a href="{% url 'recuperar' %}" class="text-muted"><p class="text-center text-muted h2 my-3">OLVIDASTE TU CLAVE? </p> </a>  
+        </div>
+        
+            <div class="row justify-content-center logos_redes">
+                    
+                    <div class="col-sm-auto align-self-center">
+                        <p class="text-left text-muted h2">INICIAR CON</p>   
+                    </div>   
+                    
+                    <div class="w-100 hidden-sm-up"></div>
+                    
+                    <div class="col-auto">
+                      <img src="{% static 'subir/img/face-logo.png' %}" class="efecto">
+                    </div>
+                
+                    <div class="col-auto">
+                       <img src="{% static 'subir/img/gmail-logo.png' %}" class="efecto">
+                    </div>
+                    
+                    <div class="col-auto">
+                      <img src="{% static 'subir/img/github.png' %}" class="efecto">
+                    </div>
+                       
+            </div>
+        
+
+    </div>    
+
+ 
+  
+    <script src="{% static 'subir/js/vue.js'%}"></script>
+	<script src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+	
+	<script>
+new Vue({
+    el:'#contenedor',
+    data:{
+        
+        validacion:false,
+        error:false,
+        validacion2:false,
+        error2:false,
+        validacion3:false,
+        error3:false,
+        debil:false,
+        aceptable:false,
+        fuerte:false,
+        coinciden:false,
+        nocoinciden:false
+
+    },
+    methods:{
+        validacioncorreo(){
+           var patron= $('#validar').attr('pattern')
+             var val = $('#validar').val()
+             
+                var pat = new RegExp(patron)
+            
+            if(val==""){
+                   this.validacion=false
+                    this.error=false
+            }    
+                
+                
+            else if(!pat.exec(val)){
+                    this.validacion=false
+                    this.error=true
+                    
+                    
+                }
+            
+            else{
+                
+                this.error=false
+                this.validacion=true
+                
+               
+            }
+            
+            
+        },
+        
+        validacionuser(){
+            var patron= $('#nombreus').attr('pattern')
+             var val = $('#nombreus').val()
+             
+                var pat = new RegExp(patron)
+            
+            if(val==""){
+                   this.validacion2=false
+                    this.error2=false
+            }    
+                
+                
+            else if(!pat.exec(val)){
+                    this.validacion2=false
+                    this.error2=true
+                    
+                    
+                }
+            
+            else{
+                
+                this.error2=false
+                this.validacion2=true
+                
+               
+            }
+        
+    },
+        
+        validacionclave(){
+            
+
+             var val1 = $('#clave').val()
+             var val2 = $('#confirmacionclave').val()
+
+            if(val1.length>0 && val1.length<9){
+                this.debil=true
+                this.aceptable=false
+                this.fuerte=false
+                   
+            }   
+            
+            else if(val1.length>8 && val1.length<16){
+                
+                this.debil=false
+                this.aceptable=true
+                this.fuerte=false
+            }
+            
+                        
+            else if(val1.length>15){
+                
+                this.debil=false
+                this.aceptable=false
+                this.fuerte=true
+            }
+                
+           else if(val1==""){
+                this.debil=false
+                this.aceptable=false
+                this.fuerte=false  
+                this.coinciden=false
+                this.nocoinciden=false
+            }
+            
+//nu
+                    
+            if(val1==val2){
+                
+                if(val1!=""){
+                    this.coinciden=true
+                    this.nocoinciden=false
+                }
+            }
+            
+                        
+            else if(val1=="" || val2==""){
+                this.coinciden=false
+                this.nocoinciden=false
+                
+            }
+            
+            
+            else if(val1!=val2){
+                this.coinciden=false
+                this.nocoinciden=true
+            }
+
+
+    } 
+        
+    }
+    
+    
+})    
+    
+</script>  
+        
+    
+    </body>
+
+
+
+
+</html>

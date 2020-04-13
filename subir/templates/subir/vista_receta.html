@@ -1,0 +1,184 @@
+{% extends 'subir/base.html' %}
+
+{% block title %}
+
+{{receta.nombre}}
+
+{% endblock %}
+
+{% load static %}
+
+        <!-- nav en tamaño pequeño para adelante-->
+        {% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+        <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+        <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+        <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album'%}">ALBUM</a>  
+        </li>
+        {% endblock %}
+
+
+
+{% block contenedorotros%}
+       
+<div class="modal fade" id="modalfoto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content" style="background:none;border: none;">
+       <div class="modal-header d-flex justify-content-end">
+       
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="font-size:50px;" class="text-white">&times;</span>
+        </button>
+   </div>
+   
+        <img src="{{ MEDIA_URL }}{{ receta.imagen }}" class="img-fluid" width="1280px">
+        
+      <div class="modal-footer d-flex justify-content-center text-white">
+          
+          <h4 class="text-uppercase">{{receta.nombre}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+       <div class="row justify-content-center my-md-4 py-1">
+
+     
+          
+           <div class="col-12 col-md-12 col-lg-10 col-xl-8">
+               <div class="card bg-faded">
+                    
+                   <div class="card-block">
+                      
+                   <div class="row justify-content-center">
+                       <div class="col-auto col-sm-5 col-md-auto align-self-center img-fluid fuenteennegrilla"> 
+                           
+                           <div class="card bg-faded" style="border:none;">
+                           
+                           <img src="{{ receta.imagen.url }}" class="my-3 img-fluid" width="250px"  data-toggle="modal" data-target="#modalfoto" style="cursor: pointer;">
+         
+                               
+                               </div>
+                           <div class="w-100"></div>
+                            <!-- nombre receta -->
+                           <strong class="text-center h2"><p class="text-uppercase" style="cursor:pointer;" data-toggle="modal" data-target="#modalfoto"> {{receta.nombre}}</p> </strong>
+                        
+                      
+                       </div>
+                       
+                     
+                       <div class="col-12 col-sm-7 my-4 fuenteennegrilla ">
+           
+                  
+                         <p class="text-uppercase"> <strong class="mr-2 h4"> CATEGORIA: </strong>  {{receta.categorias}}</p>
+                          
+                          
+                          
+                          
+                        <p class="text-uppercase"> <strong class="mr-2 h4 "> ALBUM: </strong>  {{receta.album}}</p>
+                        
+                        <p> <strong class="mr-2 h4"> TIEMPO DE PREPARACION: </strong> {{receta.preptimes}}</p>
+                        <p> <strong class="mr-2 h4"> TIEMPO DE COCCION: </strong>  {{receta.coctime}} </p>
+                     
+
+                        </div>
+            <div class="col-12 fuenteennegrilla"> 
+    
+                                                     
+                                                                                            
+
+                    <strong class="h2"> INGREDIENTES: </strong> 
+
+                    <div class="w-100"></div>
+                       
+                <ul class="list-group my-2">
+              
+                
+                {% for ing in receta.ingredientesadministracion.all %}
+                      <li class="list-group-item d-flex justify-content-center justify-content-sm-between  align-items-center">
+               
+                      
+                        Ingrediente&nbsp;{{ forloop.counter }}
+                  
+                        <span class="badge badge-primary badge-pill col-12 col-sm-3 ">
+                        Cantidad:&nbsp;<br>
+                         {{ing.cantidad}} 
+                        </span>
+                        
+                       <span class="badge badge-warning badge-pill col-12 col-sm-3 text-capitalize">
+                            Cuantificador:&nbsp; <br>{{ing.cuantificador}}        
+                        </span>
+                            de
+                        <span class="badge badge-info badge-pill col-12 col-sm-3 text-capitalize ">Nombre:&nbsp; <br>{{ing.nombre}}
+                        </span>
+                      </li>
+                {% endfor %}  
+                  
+          
+                </ul>  
+    
+                 
+                    <strong class="h2">INSTRUCCIONES</strong>
+
+                        <div class="w-100"></div>
+                       <div class="card my-2">
+                           
+                           <div class="card-body px-2">
+                               
+                              {{receta.instrucciones}} 
+                          
+                           </div>
+                           
+                       </div>
+                       
+                
+
+             </div>
+     </div>
+                      
+                      
+                      <div class="row justify-content-around">
+
+                               <div class="col-auto fuenteennegrilla">
+                                        <p> <strong class="h4"> CALORIAS:  </strong> {{receta.calorias}}</p> 
+                               </div>
+                                
+                                 <div class="col-auto fuenteennegrilla">
+                                      <p> <strong class="h4"> PROTEINAS: </strong> {{receta.calorias}}</p>
+                                 </div>
+                             <div class="col-auto fuenteennegrilla">
+                                  <p> <strong class="h4"> CARBOHIDRATOS: </strong>{{receta.calorias}}</p>
+                             </div>
+                      </div>
+                       
+                </div>
+               </div>
+               
+               
+           </div>
+       </div>
+
+
+{% endblock %}
+
+{% block scriptsexternos %}
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+{% endblock %}

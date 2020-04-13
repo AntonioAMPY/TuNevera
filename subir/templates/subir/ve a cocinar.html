@@ -1,0 +1,422 @@
+{% extends 'subir/base.html' %}
+
+{% load static %}
+
+        <!-- nav en tamaño pequeño para adelante-->
+        {% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album'%}" @click="aparecersecionxd">ALBUM</a>  
+        </li>
+        {% endblock %}
+        
+   
+
+    {% block contenedorotros %}
+{% block title %}
+     
+     Vamos a cocinar!
+     {% endblock %}
+      <div>
+               
+                    <div class="row justify-content-around">
+                       
+                        <div class="col-6 col-md-3">
+                          
+                      
+                           <div class="card" style="background:none;border:none;">
+                            <img src="{% static 'subir/img/neveraveacocinar2.png' %}" width="80%" class="card-img img-fluid"> 
+                                  
+        <div class="card-img-overlay mx-4">
+<!--d-flex justify-content-center-->
+                           
+              <div class="" style="overflow:auto;max-width:80%;">
+                       
+        
+                    <img v-for="t in frutas" :src="t.fotito" :id="t.nombre" @click="pruebaxx(t.id+' this.frutas')" width="40%" v-show="t.esconder" class="" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=t.nombre>
+                    
+                    <img v-for="v in listaing" :src="v.fotito" :id="v.nombre" @click="pruebaxx(v.id+' this.listaing')" width="40%" v-show="v.esconder" class="" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=v.nombre>
+                     
+                    <img v-for="ma in mariscos" :src="ma.fotito" :id="ma.nombre" @click="pruebaxx(ma.id+' this.mariscos')" width="40%" v-show="ma.esconder" class="" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=ma.nombre>
+                                          
+                    <img v-for="ca in carnes" :src="ca.fotito" :id="ca.nombre" @click="pruebaxx(ca.id+' this.carnes')" width="40%" v-show="ca.esconder" class="" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=ca.nombre>
+
+              </div>
+                                  
+                                  
+        </div>
+
+                               
+                               
+                           </div>
+                            
+                        </div>
+                        
+                        <!-- ingredientes en un tamaño pequeño para abajo-->
+                        
+                        <div class="col-12 col-sm-6 align-self-center hidden-md-up">
+                    <div id="dd" class="carousel slide ingcarousel" data-ride="carousel">
+                              <ol class="carousel-indicators pb-4">
+                                <li data-target="#dd" data-slide-to="0" class="active"></li>
+                                <li data-target="#dd" data-slide-to="1"></li>
+                                <li data-target="#dd" data-slide-to="2"></li>
+                                <li data-target="#dd" data-slide-to="3"></li>
+                              </ol>
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+  
+                <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                      <h4 class="text-center">frutas</h4>
+                      <div class="card-img-overlay" style="overflow:auto;max-height:80%;">
+                                       
+                            <img v-for="f in frutas" :src="f.fotito" :id="f.nombre" @click="pruebaxx(f.id+' this.frutas')" width="30%" v-show="f.mostrar" class="efect mb-4" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=f.nombre tabindex="1">
+                                        
+                      </div>
+
+                      
+                  </div> 
+            
+                                </div>
+                                
+                                <div class="carousel-item">
+                                   
+                                      <div class="card">
+                    
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                     <h4 class="text-center">Verduras</h4>
+                      <div class="card-img-overlay py-3 px-4"  style="overflow:auto;max-height:80%;">
+                      
+                     <img v-for="l in listaing" :src="l.fotito" :id="l.nombre" @click="pruebaxx(l.id+' this.listaing')" width="30%" v-show="l.mostrar" class="mb-4" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=l.nombre>
+                    
+                             
+                      </div>
+
+                      
+                  </div> 
+
+                                </div>
+                                
+                                <div class="carousel-item">
+                                  
+                                      <div class="card">
+                              
+                    <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                     <h4 class="text-center">mariscos</h4>
+                      <div class="card-img-overlay" style="overflow:auto;max-height:80%;">
+                          
+                              <img v-for="m in mariscos" :src="m.fotito" :id="m.nombre" @click="pruebaxx(m.id+' this.mariscos')" width="30%" v-show="m.mostrar" class="mb-3" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=m.nombre>
+                           
+                             
+                      </div>
+
+                      
+                  </div> 
+     
+                                </div>
+                                
+                                <div class="carousel-item">
+                                    
+                                        
+                                          <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                     <h4 class="text-center">carnes</h4>
+                      <div class="card-img-overlay" style="overflow:auto;max-height:80%;">
+                          
+                           <img v-for="c in carnes" :src="c.fotito" :id="c.nombre" @click="pruebaxx(c.id+' this.carnes')" width="30%" v-show="c.mostrar" class="mb-4" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=c.nombre>
+                           
+                             
+                      </div>
+
+                      
+                  </div> 
+                
+               
+                                </div>
+                                
+                              </div>
+                  <a class="carousel-control-prev" href="#dd" role="button" data-slide="prev" style="width:7%;">
+                               
+                                    <span class="carousel-control-prev-icon" style="background-image:url(../../static/subir/img/flechanaranjaizquierda.jpg);" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              
+                              <a class="carousel-control-next mr-4" href="#dd" role="button" data-slide="next" style="width:7%;">
+                                <span class="carousel-control-next-icon align-self-center" style="background-image:url(../../static/subir/img/flechanaranjaderecha.jpg);" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+                        </div>
+                    
+                        
+                        <div class="col-12 col-md-3 align-self-center my-4">
+                           <input type="text" id="ingredientesselect">
+                            <button class="btn btn-warning btn-block" @click="mandaringredientes">Cocinemos!</button>
+                          
+                        </div> 
+                        
+                        
+                        <!-- podio de recetas-->
+                        <div class="col-12 col-sm-6 col-md-3 align-self-center" style="margin-top: 100px;">
+                            <div class="card" style="background:none;border:none;">
+                              
+                                <img src="{% static 'subir/img/podiorecetas.png' %}" class="card-img img-fluid">
+                                
+                                <div class="card-img-overlay">
+                                
+                                     <!-- <img src="img/ni%C3%B1os-comiodas.jpg" class="img-fluid" width="100px"  style="margin-top: 100px;margin-left: 30px;">-->
+                                    
+                                </div>
+                            </div>    
+                        </div> 
+                        
+                    </div>
+                    <!--carousel donde iran los ingredientes -->
+    
+                
+        <div class="row justify-content-center my-4">
+                    
+                    <div class="col-12 col-xl-10 hidden-sm-down">
+                    <div id="lol" class="carousel slide ingcarousel" data-ride="carousel">
+                              <ol class="carousel-indicators pb-4">
+                                <li data-target="#lol" data-slide-to="0" class="active"></li>
+                                <li data-target="#lol" data-slide-to="1"></li>
+                                <li data-target="#lol" data-slide-to="2"></li>
+                              </ol>
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    
+                    <div class="row justify-content-center">
+                       <!--categoria de frutas de ve a cocinar-->
+                <div class="col-md-4 col-lg-3 mb-3">
+                  <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                     <h4 class="text-center">Frutas</h4>
+                      <div class="card-img-overlay py-3 px-4" style="overflow:auto;max-height:80%;">
+                      
+                        <img v-for="f in frutas" :src="f.fotito" :id="f.nombre" @click="pruebaxx(f.id+' this.frutas')" width="30%" v-show="f.mostrar" class="mb-4" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=f.nombre>
+                            
+                             
+                      </div>
+
+                      
+                  </div> 
+                </div>
+                <!--categoria de verduras de ve a cocinar-->
+                <div class="col-md-4 col-lg-3 mb-3">
+                  <div class="card">
+                    
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                     <h4 class="text-center">Verduras</h4>
+                      <div class="card-img-overlay py-3 px-4"  style="overflow:auto;max-height:80%;">
+                      
+                     <img v-for="v in listaing" :src="v.fotito" :id="v.nombre" @click="pruebaxx(v.id+' this.listaing')" width="30%" v-show="v.mostrar" class="mb-4" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=v.nombre>
+                    
+                             
+                      </div>
+
+                      
+                  </div> 
+                </div>
+                <div class="col-md-4 col-lg-3 mb-3">
+                  <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                      <h4 class="text-center">mariscos</h4>
+                      <div class="card-img-overlay py-3 px-4" style="overflow:auto;max-height:80%;">
+                                       
+                        <img v-for="m in mariscos" :src="m.fotito" :id="m.nombre" @click="pruebaxx(m.id+' this.mariscos')" width="30%" v-show="m.mostrar" class="mb-3" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=m.nombre>
+                                        
+                      </div>
+
+                      
+                  </div> 
+                </div>
+                                               
+                <div class="col-md-4 col-lg-3 mb-3">
+                  <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                     <h4 class="text-center">carnes</h4>
+                      <div class="card-img-overlay py-3 px-4" style="overflow:auto;max-height:80%;">
+                           
+                        <img v-for="c in carnes" :src="c.fotito" :id="c.nombre" @click="pruebaxx(c.id+' this.carnes')" width="30%" v-show="c.mostrar" class="mb-4" style="cursor:pointer;" data-toggle="tooltip" data-placement="top" :title=c.nombre>
+                             
+                      </div>
+
+                      
+                  </div> 
+                </div>
+                                               
+                </div>
+                                   
+                                </div>
+                <div class="carousel-item">
+                                    
+                                      
+            <div class="row justify-content-center">
+                       
+                <div class="col-md-4 col-lg-3 mb-3">
+                  <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                      <h4 class="text-center">bebidas</h4>
+                      <div class="card-img-overlay">
+                           
+                             
+                      </div>
+
+                      
+                  </div> 
+                </div>
+                <div class="col-md-4 col-lg-3 mb-3">
+                  <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                      <h4 class="text-center">Arroces</h4>
+                      <div class="card-img-overlay">
+ 
+                           
+                             
+                      </div>
+
+                      
+                  </div> 
+                </div>
+                <div class="col-md-4 col-lg-3 mb-3">
+                  <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                     <h4 class="text-center">Parva</h4>
+                      <div class="card-img-overlay">
+                                        
+                      </div>
+
+                      
+                  </div> 
+                </div>
+                
+                <div class="col-md-4 col-lg-3 mb-3">
+                  <div class="card">
+                     <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                     <h4 class="text-center">Categoria</h4>
+                      <div class="card-img-overlay">
+                                        
+                      </div>
+
+                      
+                  </div> 
+                </div>
+                
+                </div>
+                            
+                           
+
+
+                                   
+                                </div>
+                    <div class="carousel-item">
+                                  
+
+                        <div class="row justify-content-center">
+
+                            <div class="col-md-4 col-lg-3 mb-3">
+                              <div class="card">
+                                 <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid"><!-- la imagen se descuadra sin el img-fluid -->
+                                     <h4 class="text-center">Categoria</h4>
+                                  <div class="card-img-overlay py-0" style="overflow:auto;">
+
+                                
+
+
+                                  </div>
+
+
+                              </div> 
+                            </div>
+                            <div class="col-md-4 col-lg-3 mb-3">
+                              <div class="card">
+
+                                 <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                                <h4 class="text-center">Categoria</h4>
+                            
+                                  <div class="card-img-overlay py-3">
+                                  
+                                  
+                                  </div>
+
+
+                              </div> 
+                            </div>
+                            <div class="col-md-4 col-lg-3 mb-3">
+                              <div class="card">
+                                 <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                                     <h4 class="text-center">Categoria</h4>
+                                  <div class="card-img-overlay">
+                               
+                                  </div>
+
+
+                              </div> 
+                            </div>
+
+                            <div class="col-md-4 col-lg-3 mb-3">
+                              <div class="card">
+                                 <img src="{% static 'subir/img/fondoingredientesbandejao.png' %}" class="card-img img-fluid">
+                                     <h4 class="text-center">Categoria</h4>
+                                  <div class="card-img-overlay">
+                                
+                                  </div>
+
+
+                              </div> 
+                            </div>
+
+
+                            </div>
+
+
+
+
+                    </div>
+                  </div>
+                              <a class="carousel-control-prev mr-4" href="#lol" role="button" data-slide="prev" style="width:3%;">
+                               
+                                <span class="carousel-control-prev-icon" style="background-image:url(../../static/subir/img/flechanaranjaizquierda.jpg);" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                              </a>
+                              
+                              <a class="carousel-control-next mr-4" href="#lol" role="button" data-slide="next" style="width:3%;">
+                                <span class="carousel-control-next-icon" aria-hidden="true" style="background-image:url(../../static/subir/img/flechanaranjaderecha.jpg);"></span>
+                                <span class="sr-only">Next</span>
+                              </a>
+                            </div>
+                        </div>
+                 </div> 
+            </div>
+       
+
+
+{% endblock %}
+
+
+
+
+{% block scriptsexternos %} 
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/tether.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+
+{% endblock %}

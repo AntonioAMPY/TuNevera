@@ -1,0 +1,227 @@
+{% extends 'subir/base.html' %}
+
+
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+        {% block tabactive1 %}
+        <!-- tab de inicio -->  
+       <li class="nav-item">
+            <a class="nav-link"  href="{% url 'index' %}" >INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link "  href="{% url 'categorias' %}" >CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}" >VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link"  href="{% url 'album' %}">ALBUM</a>  
+        </li>
+        {% endblock %}
+        
+        
+
+
+
+ {% block contenedorotros %}
+
+    
+<form method="POST" enctype="multipart/form-data" >
+        {% csrf_token %}
+ 
+    {% for hidden in form.fields %}
+      {{ hidden }}
+    {% endfor %}
+
+<!--
+<input type="text" class="form-control" placeholder="ingredientes" :value="acom" id={% render_field form.ingredientes %}>
+
+<input type="text" class="form-control" placeholder="tags" :value="tags" id={% render_field form.tags %}>
+
+<input type="text" class="form-control" placeholder="Nombre" id={% render_field form.nombre %}
+
+
+
+   <div class="col-12 my-2">
+                       <strong class="hidden-sm-up">Agregar Ingrediente</strong>
+                        <button type="button" class="mt-2 btn btn-info btn-block" @click="agregar">
+                        <p class="my-0 hidden-xs-down"><i class="fas fa-plus-circle mr-1"></i>Agregar Ingrediente </p>
+                            <p class="my-0 hidden-sm-up">Agregar<i class="fas fa-plus-circle ml-1"></i> </p>
+                        </button>
+                         <div class="sortable">
+
+                            <mostraringredientes v-for="(l,index) in lista" v-bind:key="l.id" v-on:remove="lista.splice(index, 1)"> </mostraringredientes>          
+                        </div>  
+                      
+                    </div>
+ <div class="col-12">
+                        
+                        <p class="my-2"><strong>TAGS</strong><small class="text-muted ml-3">(Luego de escribir el TAG pulsa enter para agregarlo)</small></p>
+                        
+                                 <b-field label="" type="is-info">
+                                    <b-taginput
+                                        v-model="tags"
+                                        type="is-info">
+                                    </b-taginput>
+                                </b-field>
+
+                        
+                    </div>
+
+-->
+    
+    
+{% render_field form.ingredientes %}
+{% render_field form.tags %}
+{% render_field form.nombre %}
+
+
+
+ 
+    {% render_field form.categorias %}
+    {% render_field form.album %}
+    
+                                <div class="form-group my-0">
+                
+                 <strong class="my-0"> Imagen de receta: </strong>  
+                 
+                 
+                 
+          
+                
+                
+                
+                
+  
+
+
+ 
+  
+				<div class="input-group">
+					<input type="text" class="form-control" style="height: 38px;" readonly>
+					<label class="input-group-btn">
+						<span class="btn btn-warning">Buscar
+						
+						     <input type="file" class="mr-3" style="display: none;" id={% render_field form.imagen %}
+						     &nbsp;
+						     <i class="fas fa-search"></i>
+						</span>
+					</label>
+				</div>
+
+                    </div>
+
+
+
+    {% render_field form.instrucciones %}
+    
+      <div class="col-12 col-md-6">
+              
+                       <strong><label>Preparacion:</label></strong>
+
+                        <input type="text" id="preparacion2" class="form-control" id={% render_field form.preptimes %}>
+                        <template>
+                            <b-field label="">
+                                <b-timepicker id="preparacion1" v-model="time1"
+                                    placeholder="Tiempo en minutos 00:minutos y en horas horas:00"
+                                    icon="clock"
+                                    :readonly="false"
+                                    >
+                                </b-timepicker>
+                            </b-field>
+                        </template>
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                        <strong><label>Tiempo de coccion:</label></strong>
+                   
+                           <input type="text" id="coccion2" class="form-control" id={% render_field form.coctime %}>
+                            <template>
+                                <b-field label="">
+                                    <b-timepicker name="coccion1" v-model="time2"
+                                        placeholder="Tiempo en minutos 00:minutos y en horas horas:00"
+                                        icon="clock"
+                                        :readonly="false"
+                                        >
+                                    </b-timepicker>
+                                </b-field>
+                            </template>
+                    </div>                
+                    
+    
+    
+    
+    
+
+
+ 
+                    <div class="col-12">                    
+                        <p class="my-2">
+                        <strong>Informacion Nutricional: </strong>
+                        <small class="text-muted ml-3">(Informacion opcional)</small> 
+                        </p>
+                    </div>
+                    
+                    <div class="col-12 col-md-4">
+                        <strong>Calorias</strong>
+                        <input type="text" name="calorias"  class="form-control mt-2" id={% render_field form.calorias %}>
+                    </div>
+                    
+                    <div class="col-12 col-md-4">
+                        <strong>Proteinas</strong>
+                        <input type="text" name="proteinas"  class="form-control mt-2" id={% render_field form.proteinas %}>
+                    </div>
+                    
+                    <div class="col-12 col-md-4">
+                        <strong>Carbohidratos</strong>
+                        <input type="text" name="carbohidratos"  class="form-control mt-2" id={% render_field form.carbohidratos %}>
+                    </div>
+
+
+    
+
+
+
+
+    <button type="submit"  class="btn btn-info btn-block" @click="mandartime"><i class="fas fa-upload mr-1"></i>Subir receta!</button>
+
+
+</form>
+
+
+  
+    
+
+ {% endblock %}
+
+
+
+
+
+{% block scriptsexternos %}
+    
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'subir/js/select2.min.js' %}"></script>
+<script src="{% static 'subir/js/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+
+{% endblock %}
+
+
+
+</html>

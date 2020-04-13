@@ -1,0 +1,32 @@
+{% extends 'usuario/base.html' %}
+{% block contenido %}
+<section>
+	{% if recetas|length %}
+		{% for receta in recetas %}
+			<article>
+				<header>
+					<h3>{{ receta.user.get_full_name }} (@<a href="/usuario/profile/{{ receta.user }}">{{ receta.user }}</a>)</h3>
+				</header>
+				{{ receta.contenido}}
+
+				<footer>
+					<p>
+
+						<strong>Publicado: {{ receta.fecha }}</strong>
+						
+						
+						{% if receta.user == logueado %}
+							<a href="/usuario/borrar/{{ receta.id }}/">Borrar</a>
+						{% endif %}
+					</p>
+				</footer>
+			</article>
+		{% endfor %}
+	{% else %}
+		<header>
+			<h3>No hay ninguna receta</h3>
+		</header>
+	{% endif %}
+
+</section>
+{% endblock %}

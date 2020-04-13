@@ -1,0 +1,237 @@
+{% extends 'subir/base.html' %}
+
+{% load static %}
+
+{% block title %}{{ user.username }}{% endblock %}
+{% block textarea %}{{ user.username }} {% endblock %}
+
+
+  <!-- nav en tamaño pequeño para adelante-->
+        {% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album'%}">ALBUM</a>  
+        </li>
+        {% endblock %}
+
+
+{% block contenido %}
+
+
+
+
+<div class="modal fade" id="modalfoto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content" style="background:none;border: none;">
+       <div class="modal-header d-flex justify-content-end" style="border:none;">
+       
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="font-size:50px;" class="text-white">&times;</span>
+        </button>
+   </div>
+   
+   <div class="modal-body d-flex justify-content-center">
+    {% if avatares2 %}
+   
+      <img src="{{avatares2}}" class="img-fluid">
+      
+       {% else %}
+            <img src="{% static 'subir/img/chef.png' %}" class="img-fluid">
+
+       {% endif %}
+       </div>
+      <div class="modal-footer d-flex justify-content-center text-white" style="border:none;">
+          
+          <h4>{{ user.username }}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+           <div class="card bg-faded">
+                    
+                   <div class="card-block">
+                      
+                   <div class="row justify-content-center">
+        
+                    <div class="col-10 col-md-auto align-self-center img-fluid"> 
+                           
+                        
+                                       {% if avatares2 %} 
+
+                                        <p class="text-center"> <img src="{{avatares2}}" class="my-3 img-fluid" width="350px" data-toggle="modal" data-target="#modalfoto" style="cursor: pointer;"></p>
+
+                                       {% else %}
+                                          <p class="text-center"> <img src="{% static 'subir/img/chef.png' %}" class="img-fluid" width="350px" data-toggle="modal" data-target="#modalfoto" style="cursor: pointer;"></p> 
+
+
+                                       {% endif %} 
+
+   
+   
+                               
+                        
+                               <div class="w-100"></div>
+                           
+                           
+                               <h6 class="text-center">
+                               <button style="cursor:pointer;" type="button" class="btn btn-link" data-toggle="modal" data-target="#modalfoto"> Ver foto</button>
+                               </h6>
+                               
+                               <div class="btn-group row d-flex justify-content-center">
+                                   
+                                    <a class="btn btn-secondary col-12 col-sm-auto mb-2" href="#recetas">{{ length }} Receta{{ length|pluralize }}</a>
+                                    
+                                    <a id="seguirresult" class="btn btn-secondary col-12 col-sm-auto mb-2" href="/usuario/seguidores/{{ user.username }}/">{{ seguidores|length }} seguidores</a>
+				                    
+				                    
+				                    <a class="btn btn-secondary col-12 col-sm-auto mb-2" href="/usuario/siguiendo/{{ user.username }}/"> siguiendo</a>
+                       
+                       
+                               </div>
+                        
+                      
+                       </div> 
+                       
+                       
+                       
+                       
+              
+                       
+                       
+                       
+                     
+                       <div class="col-12 col-md-5 my-4 fuenteennegrilla">
+                     <strong class="my-2 h4 text-uppercase"><p class="text-center">{{ user.username }}</p>  </strong> 
+                     <hr>
+                     <p> <strong class="mr-2 h4"> CIUDAD: </strong> {{ profile.ubicacion }}</p>
+                      <hr>
+                     <p> <strong class="mr-2 h4"> ULTIMA VEZ INGRESADO: </strong> {{ user.date_joined }}</p>
+                      <hr>
+                     <p> <strong class="mr-2 h4"> CORREO: </strong> <a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+                      <hr>
+                     <p> <strong class="mr-2 h4 text-uppercase"> ACERCA DE {{ user.username }}: </strong> {{ profile.frase|linebreaksbr }}</p>
+                      <hr>
+                
+                      
+                      
+        {% if logueado.is_authenticated %}
+		{% if logueado != user %}
+			<form action="" method="post" id="seguirresult2">
+				{% csrf_token %}
+				<input id="elusuario" type="hidden" name="user" value="{{ user.username }}">
+				
+				<p>
+				<br> 
+                <!-- verificar si el usuario si esta siguiendo al usuario en el que esta parado -->   
+       
+                   
+                        {% if following %}
+
+                        <button id="botoncito" class="btn btn-danger btn-block" type="button" onclick="seguimiento()" value="dejar de seguir">
+                            dejar de seguir
+                        </button>
+
+                          {% else %}
+
+                        <button id="botoncito" class="btn btn-success btn-block" type="button" onclick="seguimiento()" value="seguir">
+                            seguir
+                        </button>
+
+                        {% endif %}
+
+                
+                
+              
+                
+ 
+                 
+
+				</p>
+				
+			</form>
+		{% endif %}
+		{% endif %}
+                               
+                        </div>
+         
+                    </div>
+         
+                </div>
+               </div>
+
+                      <div class="row">
+                          
+                          <div class="col">
+                              
+                     {% if recetas|length %}
+                            <header id="recetas">
+                                <h2>Ultimas recetas</h2>
+                            </header>
+                            {% for receta in recetas %}
+                                <article>
+                                    <header>
+                                        <h3>{{ receta.user.get_full_name }} (<a href="/usuario/profile/{{ receta.user }}">{{ receta.user }}</a>)</h3>
+                                    </header>
+                                    {{ receta.contenido|safe|linebreaksbr }}
+                                    <footer>
+                                        <p>
+                                   
+                                            <strong>Publicado: {{ receta.fecha }}</strong>
+                                            
+                                            {% if receta.user == logueado %}
+                                                <a href="/usuario/borrar/{{ receta.id }}/">Borrar</a>
+                                            {% endif %}
+                                        </p>
+                                    </footer>
+                                </article>
+                            {% endfor %}
+                        {% else %}
+                            <header><h3>No se ha cocinado nada todavia</h3></header>
+                        {% endif %}
+                      </div>
+                      </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+{% endblock %}
+
+
+
+
+{% block scriptsexternos %}
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'usuario/js/ajax2.js' %}"></script>
+{% endblock %}

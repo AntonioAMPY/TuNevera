@@ -1,0 +1,138 @@
+{% extends 'subir/base.html' %}
+
+{% block title %}
+    Perfil
+{% endblock %}    
+
+{% load static %}
+
+        <!-- nav en tamaño pequeño para adelante-->
+        {% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album'%}">ALBUM</a>  
+        </li>
+        {% endblock %}
+
+
+
+
+{% block contenedorotros %}
+
+<div class="modal fade" id="modalfoto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+
+    <div class="modal-content" style="background:none;border: none;">
+       <div class="modal-header d-flex justify-content-end">
+       
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" style="font-size:50px;" class="text-white">&times;</span>
+        </button>
+   </div>
+   
+      <img src="{% static 'subir/img/fondo_web.jpg' %}" class="img-fluid" width="1280px">
+      
+      <div class="modal-footer d-flex justify-content-center text-white">
+          
+          <h4>nombre foto</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+           <div class="card bg-faded">
+                    
+                   <div class="card-block">
+                      
+                   <div class="row justify-content-center">
+        
+                    <div class="col-10 col-md-auto align-self-center img-fluid"> 
+                           
+                           <div class="card bg-faded" style="border:none;">
+                       
+                                <img src="{% static 'subir/img/fondo_web.jpg' %}" class="my-3 img-fluid" width="500px" data-toggle="modal" data-target="#modalfoto" style="cursor: pointer;">
+                               
+                            </div>
+                               <div class="w-100"></div>
+                           
+                           
+                               <h6 class="text-center">
+                               <button style="cursor:pointer;" type="button" class="btn btn-link" data-toggle="modal" data-target="#modalfoto"> Ver foto</button>
+                               </h6>
+                               
+                               <div class="btn-group d-flex justify-content-center">
+                                   
+                                   <a href="#" class="btn btn-secondary">recetas </a>
+                                   <a href="#" class="btn btn-secondary">seguidores</a>
+                                   <a href="#" class="btn btn-secondary">siguiendo</a>
+                               </div>
+                        
+                      
+                       </div> 
+                     
+                       <div class="col-12 col-md-4 my-4 fuenteennegrilla">
+                     <strong class="my-2 h4"><p class="text-center">NOMBRE</p>  </strong> 
+                     <hr>
+                     
+                     <p> <strong class="mr-2 h4"> RECETAS SUBIDAS: </strong> ALBUM</p>
+                      <hr>
+                     <p> <strong class="mr-2 h4"> CIUDAD: </strong> ALBUM</p>
+                      <hr>
+                     <p> <strong class="mr-2 h4"> ULTIMA VEZ INGRESADO: </strong> sdf</p>
+                      <hr>
+                     <p> <strong class="mr-2 h4"> CORREO: </strong> sdf</p>
+                      <hr>
+                     <p> <strong class="mr-2 h4"> ACERCA DE NOMBRE: </strong> ALBUM</p>
+                      <hr>
+                     <button class="btn btn-secondary btn-block">seguir</button>
+                
+                          
+                          
+                          
+                        </div>
+                             
+        
+                             
+                             
+                    </div>
+              
+                       
+                </div>
+               </div>
+               
+                   
+                      <div class="row">
+                          
+                          <div class="col">
+                              
+                              recetas
+                          </div>
+                      </div> 
+
+
+
+{% endblock %}
+
+
+{% block scriptsexternos %}
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+{% endblock %}

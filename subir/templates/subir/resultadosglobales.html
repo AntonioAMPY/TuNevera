@@ -1,0 +1,192 @@
+{% extends 'subir/base.html' %}
+
+{% block title %}
+
+Resultados
+
+{% endblock %}
+
+{% load static %}
+
+        <!-- nav en tamaño pequeño para adelante-->
+        {% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+        <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+        <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+        <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album'%}">ALBUM</a>  
+        </li>
+        {% endblock %}
+
+
+
+{% block contenedorotros%}
+      
+    {% if pr %}
+ 
+            <div class="card-group row justify-content-start align-items-end">
+                 
+                {% for i in pr %}
+                     
+
+
+                
+        <div class="col-12 col-md-4 col-lg-3 my-3 hidden-sm-down">
+                    <div class="card  mr-3 px-2 py-2 " style="-webkit-box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);
+                    box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);">
+                            
+                    <img src="{{i.imagen.url}}" class="card-img-top img-fluid">
+                    <h4 class="card-header">{{i.nombre}} </h4>
+                    <div class="card-body py-2">
+
+                    <p style="font-size: 14px;">
+                    <img src="{% static 'subir/img/perfiltt2.png'%}" class="mt-2" >
+                      {{i.user}}
+                       </p>     
+                                       
+                         <p class="card-text" style="font-size: 14px;">
+                        Tiempo de preparacion: {{i.preptimes}}
+                        <br>
+                         Tiempo de coccion: {{i.coctime}}
+                         </p>
+                         
+
+                   
+                        <a href="{% url 'receta_detalle' i.pk %}" class="btn btn-warning btn-block"> Ir a la receta! </a>
+                    </div>
+                    
+                  
+
+                </div>
+                
+
+        </div>
+           <div class="col-12 hidden-md-up hidden-xs-down mb-3">                       
+                              
+                    <div class="card " style="-webkit-box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);
+                    box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);">
+                            
+                    
+                    <h4 class="card-header">{{i.nombre}} </h4>
+                    <div class="card-body py-2">
+                      <div class="row">  
+                        <div class="col-5 align-self-center">
+                            <img src="{{i.imagen.url}}" width="90%" class="px-2 mx-2">
+                            
+                        </div>
+                        
+                        <div class="col-7 my-3">
+                            <p>
+                                <img src="{% static 'subir/img/perfiltt2.png'%}" class="">
+                                  nombre de usuario
+                            </p>     
+
+                            <p class="card-text pr-3">
+                                    Tiempo de preparacion: {{i.preptimes}}
+                                    <br>
+                                     Tiempo de coccion: {{i.coctime}}
+                                     <br>
+                                     
+                                      <a href="{% url 'receta_detalle' i.pk %}" class="btn btn-warning btn-block mt-2"> Ir a la receta! </a>
+                            </p>
+                            
+                           
+                            
+                        </div>
+                    </div>
+                           
+                     
+                         
+
+                
+                    </div>
+                    
+                  
+
+                </div>
+                           
+               
+            </div>    
+                           
+                <div class="col-12 mb-3 hidden-sm-up">
+                    <div class="card  mr-3 px-2 py-2 " style="-webkit-box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);
+                    box-shadow: 0px 2px 18px 5px rgba(0,0,0,0.75);">
+                            
+                    <img src="{{i.imagen.url}}" class="card-img-top img-fluid">
+                    <h4 class="card-header">{{i.nombre}} </h4>
+                    <div class="card-body py-2">
+
+                    <p style="font-size: 14px;">
+                    <img src="{% static 'subir/img/perfiltt2.png'%}" class="mt-2" >
+                      nombre de usuario
+                       </p>     
+                                       
+                         <p class="card-text" style="font-size: 14px;">
+                        Tiempo de preparacion: {{i.preptimes}}
+                        <br>
+                         Tiempo de coccion: {{i.coctime}}
+                         </p>
+                         
+
+                   
+                        <a href="{% url 'receta_detalle' i.pk %}" class="btn btn-warning btn-block"> Ir a la receta! </a>
+                    </div>
+                    
+                  
+
+                </div>
+                
+
+        </div>                                    
+                      
+                           
+                                     
+
+
+          
+
+                {% endfor %}
+                
+</div>    
+ 
+    {% else %}
+    
+       
+       <div class="row justify-content-center my-0 py-0">
+           
+           <div class="col-6">
+               <a href="{% url 'subirrecites' %}">
+               <img src="{% static 'subir/img/imagen_error.png' %}" class="img-fluid" alt="">
+               </a>
+           </div>
+           
+       </div>
+        
+
+    {% endif%}
+
+{% endblock %}
+
+{% block scriptsexternos %}
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/tether.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+{% endblock %}

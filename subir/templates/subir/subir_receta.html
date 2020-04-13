@@ -1,0 +1,268 @@
+
+{% extends 'subir/base.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<head>
+ 
+ <!--   <link rel="stylesheet" href="css/buefy.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="css/subir_receta.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">-->
+
+</head>
+
+        {% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album'%}">ALBUM</a>  
+        </li>
+        {% endblock %}
+        
+        
+
+
+
+ {% block contenedorotros %}
+   
+    <div class="row" v-if="aparecerseccion">
+        <div class="col">
+            
+            <h2 class="display-4">Subir receta</h2>
+            
+   
+              <form method=""  action="">
+                
+        
+        
+            <!-- form-group de nombre de receta(input) , form-group en forma de grid para mas comodidad -->
+            
+          
+            <div class="form-group row my-2">
+                
+                <div class="col-12 col-md-4 my-2">
+                    <strong>Nombre de la receta </strong>
+                    <input type="text" v-model="mismo" name="nombre" id="" class="form-control mt-2" required="required">
+                </div>
+
+                
+             <!-- columna de categoria de receta donde va el collapse con el buscador para filtrar entre las opciones -->
+                <div class="col-12 col-md-4 my-2">
+            
+                    <strong>Categoria de la receta</strong>
+                    <!-- aca empieza el collapse de categoria-->
+        
+          
+               
+                    <categorias :listacategorias="listacategorias" style="width:100%;">
+                        
+                    </categorias>
+                     
+                      <script type="text/x-template" id="categorias-template">
+                      
+                      <select required="required" name="categoriaslista">
+                        <slot></slot>
+                      </select>
+                      
+                    </script>
+                    
+                   
+        
+                </div>
+                
+                 
+                <div class="col-12 col-md-4 my-2">
+             
+                    <strong class=""> Album de la receta</strong>
+ 
+          
+               
+                    <album :listaalbum="listaalbum" style="width: 100%;">
+                        
+                    </album>
+                     
+                      <script type="text/x-template" id="album-template">
+                      
+                      <select required="required" name="albumlista">
+                        <slot></slot>
+                      </select>
+                      
+                    </script>
+                   
+                </div>
+           
+            </div>
+             
+            <div class="form-group my-0">
+                
+                 <strong class="my-0"> Imagen de receta: </strong>  
+                
+                <div class="input-group input-file my-3" name="Fichier1">
+                    <input type="text" class="form-control hidden-sm-down" placeholder='Selecciona la imagen de la receta'  required="required"/>			
+                    <span class="input-group-btn hidden-sm-down">
+                        <button  type="button" class="btn btn-warning btn-choose" style="border-bottom:1px solid rgba(0,0,0,.15);border-top:1px solid rgba(0,0,0,.15);border-right:1px solid rgba(0,0,0,.15);">
+                            <i class="fas fa-search mr-1"></i>Buscar
+                        </button>
+                    </span>
+                        <input type="text" class="form-control hidden-md-up btn btn-secondary" style="border-radius: 4px;" placeholder='Click para seleccionar imagen' required="required" />	
+                    
+
+
+                </div>
+
+            </div>
+         
+            
+            <div class="form-group row">
+                    <div class="col-12 my-2">
+                       <strong class="hidden-sm-up">Agregar Ingrediente</strong>
+                        <button type="button" class="mt-2 btn btn-info btn-block" @click="agregar">
+                        <p class="my-0 hidden-xs-down"><i class="fas fa-plus-circle mr-1"></i>Agregar Ingrediente </p>
+                            <p class="my-0 hidden-sm-up">Agregar<i class="fas fa-plus-circle ml-1"></i> </p>
+                        </button>
+
+                        
+                    
+
+
+                         <div class="sortable">
+
+                            <mostraringredientes v-for="(l,index) in lista" v-bind:key="l.id" v-on:remove="lista.splice(index, 1)"> </mostraringredientes>          
+                        </div>  
+                      
+                    </div>
+                    <div class="col-12">
+                      <strong>Instrucciones:</strong>
+                      <textarea class="form-control mb-2" rows="5" id="intrucciones" style="max-height:500px;min-height:100px;" required="required" name="instrucciones"></textarea>
+                 
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+              
+                       <strong><label>Preparacion:</label></strong>
+
+                        <input type="text" id="preparacion2" class="form-control">
+                        <template>
+                            <b-field label="">
+                                <b-timepicker id="preparacion1" v-model="time1"
+                                    placeholder="Tiempo en minutos 00:minutos y en horas horas:00"
+                                    icon="clock"
+                                    :readonly="false"
+                                    >
+                                </b-timepicker>
+                            </b-field>
+                        </template>
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                        <strong><label>Tiempo de coccion:</label></strong>
+                   
+                           <input type="text" id="coccion2" class="form-control">
+                            <template>
+                                <b-field label="">
+                                    <b-timepicker name="coccion1" v-model="time2"
+                                        placeholder="Tiempo en minutos 00:minutos y en horas horas:00"
+                                        icon="clock"
+                                        :readonly="false"
+                                        >
+                                    </b-timepicker>
+                                </b-field>
+                            </template>
+                    </div>
+               
+                   <div class="col-12">
+                        
+                        <p class="my-2"><strong>TAGS</strong><small class="text-muted ml-3">(Luego de escribir el TAG pulsa enter para agregarlo)</small></p>
+                        
+                                 <b-field label="" type="is-info">
+                                    <b-taginput
+                                        v-model="tags"
+                                        type="is-info">
+                                    </b-taginput>
+                                </b-field>
+
+                        
+                    </div>
+                    
+
+                    
+                    <div class="col-12">                    
+                        <p class="my-2">
+                        <strong>Informacion Nutricional: </strong>
+                        <small class="text-muted ml-3">(Informacion opcional)</small> 
+                        </p>
+                    </div>
+                    
+                    <div class="col-12 col-md-4">
+                        <strong>Calorias</strong>
+                        <input type="text" name="calorias" id="" class="form-control mt-2">
+                    </div>
+                    
+                    <div class="col-12 col-md-4">
+                        <strong>Proteinas</strong>
+                        <input type="text" name="proteinas" id="" class="form-control mt-2">
+                    </div>
+                    
+                    <div class="col-12 col-md-4">
+                        <strong>Carbohidratos</strong>
+                        <input type="text" name="carbohidratos" id="" class="form-control mt-2">
+                    </div>
+                    
+           
+                    
+            
+            </div>
+            
+       
+    
+            <button @click="mandartime"  type="button"   class="btn btn-info btn-block"><i class="fas fa-upload mr-1"></i>Subir receta!</button>
+    
+            </form>
+        </div>
+    </div>
+
+  
+    
+
+ {% endblock %}
+
+
+
+
+
+{% block scriptsexternos %}w
+    
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'subir/js/select2.min.js' %}"></script>
+<script src="{% static 'subir/js/jquery-ui.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+
+{% endblock %}
+
+
+
+</html>
+

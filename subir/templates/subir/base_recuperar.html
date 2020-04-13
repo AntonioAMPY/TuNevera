@@ -1,0 +1,65 @@
+
+
+
+{% load static %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'subir/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'subir/css/recuperar_contrasenia22.css' %}"> 
+    <script src="{% static 'subir/js/vue.js' %}"></script> 
+    <title>{% block titulo %}{% endblock %}</title>
+        
+</head>
+<body>
+
+	<nav class="navbar hidden-sm-down bg-warning">
+			
+			
+            <div class="row justify-content-sm-center justify-content-lg-start">
+            <div class="col-auto">
+			<img src="{% static 'subir/img/neveraveacocinar.png' %}" width="80px" class="d-flex float-right"  width="100px" height="100px">  
+           </div>
+            
+            <div class="col-auto align-self-center">
+             <h4 class="navbar-brand display-4 text-white"  style="font-size:45px;">Reestablecer Contraseña</h4>
+             </div>
+            </div>
+
+	</nav>
+
+
+<div id="contenedor" class="container-fluid px-4 py-4">
+    <div class="row  pr-xs-0 pr-sm-4 ml-xs-0 mr-sm-4">
+        <div class="col pr-xs-0 pr-sm-4 ml-xs-0 mr-sm-4">
+            
+          
+          {% block contenidorecuperar %}
+          {% endblock %}
+          
+        </div>
+        
+        
+        
+      
+
+            
+   
+
+  
+    </div>  
+</div> 
+
+
+<script src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>   
+<script src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+      
+    
+</body>
+</html>

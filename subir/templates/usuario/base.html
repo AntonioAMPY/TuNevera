@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>{% block titulo %}{% endblock %}</title>
+	<!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+	<link href="/static/usuario/css/bootstrap.min.css" rel="stylesheet">
+	<style>body { padding-top: 60px; } </style>
+	<link href="/static/usuario/css/bootstrap-responsive.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="/static/usuario/js/bootstrap.min.js"></script>
+
+
+	<!-- NaV-BAR-->
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="/usuario/"></a>
+				<div class="nav-collapse">
+					<ul class="nav">
+						<li class="active"><a href="/usuario/">Home</a></li>
+						
+						{% if logueado %}
+							<li>
+
+								<div class="btn-group">
+							  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+							    @{{ logueado.username }} 
+							    <span class="caret"></span>
+							  </a>
+							  <ul class="dropdown-menu">
+							    <li><a href="/usuario/">Home</a></li>
+							    <li><a href="/usuario/profile/{{ logueado.username }}/">Mi perfil</a></li>
+							    <li><a href="/usuario/configuracion/">Configuración de la cuenta</a></li>
+							    <li class="divider"></li>
+							    <li><a href="/usuario/logout/">Cerrar sesión</a></li>
+							  </ul>
+							</div>
+							</li>
+						{% endif %}
+					</ul>
+					{% if logueado %}
+						<form action="/usuario/buscar/" method="get">
+							<input type="text" name="busqueda" value="{{ busqueda }}" placeholder="Búsqueda">
+							<input type="submit" value="Buscar" class="btn btn-success">
+						</form>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="modal hide fade" id="contacto">
+
+<!-- Cierra nav-bar-->
+
+
+
+
+
+  
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Cerrar</a>
+  </div>
+
+  <!-- caja de Tweet rapido -->
+</div>
+<div class="container">
+	<div class="row">
+		{% if logueado %}
+		<div class="span4">
+			<h3>{% block fasttweet %} rápido{% endblock %}</h2>
+				<form action="/usuario/tweet/" method="post">
+					{% csrf_token %}
+					{% block respuesta %}{% endblock %}
+					<p>
+						<textarea name="content" maxlength="140" rows="5" cols="50">{% block textarea %}{% endblock %}</textarea><br>
+						<input class="btn btn-success" type="submit" value="subir">
+					</p>
+				</form>
+			<section>
+				<header>
+					<h3>{{ logueado.get_full_name }} (<a href="/usuario/profile/{{ logueado }}/">@{{ logueado }}</a>)</h3>
+					<div class="pagination">
+						<ul>
+							<li><a href="/usuario/profile/{{ logueado }}/">{{ nrecetas }} subir{{ nrecetas|pluralize }}</a></li>
+							<li><a href="/usuario/seguidores/{{ logueado }}/">{{ u_seguidores }} seguidores</a></li>
+							<li><a href="/usuario/siguiendo/{{ user.username }}/">{{ u_siguiendo }} siguiendo</a></li>
+						</ul>
+					</div>
+				</header>
+			</section>
+		</div>
+		{% endif %}
+
+
+  <!-- cierra caja de Tweet rapido -->
+
+
+
+  <!-- contenido-->
+		<div class="span{% if logueado %}8{% else %}12{% endif %}">
+			{% block contenido %}
+			{{ mensaje }}
+			{% endblock %}
+		</div>
+
+
+  <!--cierra contenido-->
+	</div>
+</div>
+
+</body>
+</html>

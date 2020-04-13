@@ -1,0 +1,32 @@
+form > .input-group{
+    
+    margin-bottom: 15px;
+}
+
+body{
+    
+    background-image: url(../img/fondo_web.jpg);
+  	  background-position: center center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
+	  background-size: cover;
+
+    
+}
+
+.register{
+        background-color: #eceeef;
+    border: 1px solid rgba(0,0,0,.15);
+-webkit-box-shadow: 6px 7px 14px 5px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px 7px 14px 5px rgba(0,0,0,0.75);
+box-shadow: 6px 7px 14px 5px rgba(0,0,0,0.75);
+    
+   
+}
+
+.elcarousel{
+    
+    -webkit-box-shadow: -1px 0px 13px 8px rgba(0,0,0,0.75);
+-moz-box-shadow: -1px 0px 13px 8px rgba(0,0,0,0.75);
+box-shadow: -1px 0px 13px 8px rgba(0,0,0,0.75);
+}

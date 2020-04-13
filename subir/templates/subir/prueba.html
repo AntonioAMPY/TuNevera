@@ -1,0 +1,27 @@
+
+
+                 {% for x in xxx %}
+                       
+
+                            <div class="col-2 px-2 mx-0 mb-2 align-self-center">
+
+                                <h1 class="mr-4" style="font-family:'podio';color:orange;">{{ forloop.counter }}</h1>
+
+                            </div>   
+
+
+
+                            <div class="col-10 px-0 mb-2" style="background:rgba(255,255,255,0.9);">
+                                  <a target="_blank" href="{% url 'receta_detalle' x.pk %}" class="h2 nav-link text-uppercase px-2 py-0" style="font-family:'Hot-legend';">  
+
+                                    <img src="{{x.imagen.url}}" class="img-fluid my-2" width="30%">
+
+                                     {{x.nombre}} 
+                                  </a>
+                            </div>
+
+
+                {% endfor %} 
+                
+
+

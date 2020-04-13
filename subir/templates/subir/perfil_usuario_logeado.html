@@ -1,0 +1,116 @@
+{% extends 'subir/base.html'%}
+
+{% load static %}
+  
+  
+{% block title %}
+    Perfil
+{% endblock %}     
+   
+{% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album'%}" @click="aparecersecionxd">ALBUM</a>  
+        </li>
+{% endblock %}
+
+{% block contenedorotros%}
+
+       <div class="row justify-content-center my-md-4 py-1">
+           <div class="col-12 col-md-12 col-lg-10 col-xl-8">
+               <div class="card bg-faded">
+                    
+                   <div class="card-block">
+                      
+                   <div class="row justify-content-center">
+                       <div class="col-auto col-sm-5 col-md-auto align-self-center img-fluid"> 
+                           
+                           <div class="card bg-faded" style="border:none;">
+                       
+                            <img src="{% static 'subir/img/p9.jpg' %}" class="my-3 img-fluid" width="230px">
+                               
+                               </div>
+                           <div class="w-100"></div>
+                           
+                           
+                           <h6 class="text-center"><a href="#" class="">Cambiar foto de perfil</a></h6>
+                        
+                      
+                       </div>
+                       
+                     
+                       <div class="col-12 col-sm-7 my-4">
+                      <form action="" method="" class="">
+                      <div class="form-group">
+                  
+                          Nombre de usuario 
+                     
+    
+                            <input type="text" name="" class="form-control">
+              
+                          </div>         
+                         <div class="form-group">
+                               Correo electronico 
+                        <input type="text" name="" class="form-control">
+   
+                           
+                      </div>
+                      
+                      <div class="form-group">
+                          Ciudad <a href="#" class="float-right">Cambiar ciudad</a>
+                          <input type="text" name="" class="form-control">
+                          
+                      </div>
+                      
+                      <div class="form-group">
+                          
+                          Contraseña <a href="#" class="hidden-xs-down float-right">Cambiar contraseña</a>
+                          <a href="#" class="hidden-sm-up float-right">Cambiar</a>
+                          <input type="password" name="" class="form-control">
+                          
+                      </div>
+                      
+                      
+                       </form>
+                    
+                       
+                        </div>
+                        
+                                 
+                       <div class="col-12">
+                           
+                           <button class="btn btn-warning btn-block">Guardar Cambios</button>
+                       </div>      
+                    </div>
+                       
+                </div>
+               </div>
+               
+               
+           </div>
+       </div>
+ 
+
+{% endblock %}
+
+{% block scriptsexternos %}
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+{% endblock %}

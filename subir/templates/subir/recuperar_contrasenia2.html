@@ -1,0 +1,92 @@
+
+
+{% extends 'subir/base_recuperar.html' %}
+
+{% load static %}
+
+
+
+
+           
+             {% block contenidorecuperar %}
+             
+          
+            
+            <h4 class="display-4 text-muted">Recuperar contraseña</h4>
+            
+            <p>Ingresa tu correo electronico para configurar una nueva contraseña</p>
+            <form action="" method="">
+               
+               
+                <div class="form-group form-inline" :class="{'has-success':validacion,'has-danger':error}">
+      
+                         
+                        <label class="mr-4">Correo electronico:</label> 
+                        <input @keyup="validarcorreo" type="email" id="validar" class="form-control" pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{3,15})$" :class="{'form-control-success':validacion,'form-control-danger':error}" required>
+
+                </div>
+               
+         
+                <hr class="hidden-xs-down">
+                <button type="submit" class="btn btn-warning hidden-sm-down">Recuperar contraseña</button>   
+                <button type="submit" class="btn btn-warning btn-block hidden-md-up">Recuperar contraseña</button>   
+           
+           </form> 
+           
+<script>
+new Vue({
+    el:'#contenedor',
+    data:{
+        validacion:false,
+        error:false
+    },
+    
+    methods:{
+        
+        validarcorreo(){
+    
+            var patron= $('#validar').attr('pattern')
+             var val = $('#validar').val()
+             
+             // el RegExp sirve para crear una nueva expresion de patrones de string para llevar a cumplir ciertos parametros en un campo
+             
+                var pat = new RegExp(patron)
+                // la funcion exec, sirve para decirle que me ejecute esa expresion de caracteres y parametros, para que me cumpla en el campo solicitado
+            if(val==""){
+                   this.validacion=false
+                    this.error=false
+            }    
+                
+                
+            else if(!pat.exec(val)){
+                    this.validacion=false
+                    this.error=true
+                    
+                    
+                }
+            
+            else{
+                
+                this.error=false
+                this.validacion=true
+                
+               
+            }
+            
+                
+          
+            
+          
+                 
+                     
+        }
+    }
+    
+    
+})    
+    
+</script>
+   
+{% endblock %}
+
+

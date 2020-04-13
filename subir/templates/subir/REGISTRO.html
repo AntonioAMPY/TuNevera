@@ -1,0 +1,314 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    
+<meta charset="utf-8">
+    
+    
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    
+<link rel="stylesheet" href="{% static 'subir/css/bootstrap.min.css' %}">  
+<link rel="stylesheet" href="{% static 'subir/css/registro.css' %}">  
+<title>registro</title>         
+    
+</head>
+    
+<body>
+    
+    <a href="{% url 'login' %}" class="btn btn-link text-muted"> <img src="{% static 'subir/img/regresar.png' %}"> Regresar al login </a>
+    
+    <div class="container py-5" id="contenedor">
+       
+        <div class="row mt-3 justify-content-center">
+                 <!-- LA PRIMERA COLUMNA ES EL FORMULARIO -->
+               <div class="col-12 col-lg-6 register py-3 rounded">
+                <!-- el logo encerrado en un span para centrarlo -->
+                <span class="d-flex justify-content-center"> <img src="{% static 'subir/img/logott3.png' %}"></span>   
+                <form action="" method="">                              
+                    <small class="form-text text-muted mb-1">Maximo 30 caracteres Debe empezar por una letra y terminar con un numero</small> 
+
+                    <div class="form-group" :class="{'has-success':validacion2,'has-danger':error2}">
+                       <input type="text" @keyup="validacionuser" id="nombreus" class="form-control" :class="{'form-control-success':validacion2,'form-control-danger':error2}" placeholder="Nombre De Usuario" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+[0-9]+" maxlength="30" required> 
+                       <span class="form-control-feedback" v-show="validacion2">Nombre de usuario valido</span>
+                       <span class="form-control-feedback" v-show="error2">Nombre de usuario invalido</span>
+            
+                    </div>
+
+                    <small class="form-text text-muted mb-1">Ingresa un correo electronico: ejemplo1@hotmail.com</small>  
+
+                    <div class="form-group" :class="{'has-success':validacion,'has-danger':error}">
+                        <input @keyup="validacioncorreo" type="email" name="email" id="validar" class="form-control" pattern="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$" :class="{'form-control-success':validacion,'form-control-danger':error}" placeholder="Correo electronico" required>
+                        <span class="form-control-feedback" v-show="validacion">Correo Valido</span>
+                        <span class="form-control-feedback" v-show="error">Correo Invalido</span>
+                    </div>
+                    <h3 class="lead mb-3">Nombres </h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <h3 class="lead mb-3">Apellidos </h3>
+                    <div class="form-group">
+                        <input type="text" class="form-control" required>
+                    </div>
+
+
+                    <h3 class="lead mb-3">Ciudad: </h3>
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option></option>
+                            <option>Medellin</option>
+                            <option>Manizales</option>
+                            <option>Bucaramanga</option>
+                            <option>Medellin</option>
+                            <option>Medellin</option>
+                            <option>Medellin</option>
+                            <option>Medellin</option>
+                            <option>Medellin</option>
+                        </select>
+                    </div>
+
+                    <small class="form-text text-muted mb-1">Maximo 30 caracteres, Minimo 8 y debe de tener por lo menos un numero</small>  
+                    
+                    <div class="form-group" :class="{'has-danger':debil,'has-warning':aceptable,'has-success':fuerte,}">
+                        <input id="clave" type="password" @keyup="validacionclave" class="clave form-control" :class="{'form-control-danger':debil,'form-control-warning':aceptable,'form-control-success':fuerte}" pattern="^(?=\w*\d)^([A-Za-z])\S{8,16}$" maxlength="30" placeholder="Contraseña" required>
+                        <span class="form-control-feedback" v-show="debil">Contraseña debil</span>
+                        <span class="form-control-feedback" v-show="aceptable">Contraseña aceptable</span>
+                        <span class="form-control-feedback" v-show="fuerte">Contraseña fuerte</span>
+                    </div>
+
+                    <small class="form-text text-muted mb-1">Vuelve a escribir tu contraseña</small>  
+
+                    <div class="form-group" :class="{'has-success':coinciden,'has-danger':nocoinciden}">
+                        <input type="password" id="confirmacionclave" @keyup="validacionclave" class="clave form-control" :class="{'form-control-success':coinciden,'form-control-danger':nocoinciden}" placeholder="Confirmar Contraseña" required>
+                        <span class="form-control-feedback" v-show="coinciden">Las contraseñas coinciden</span>
+                        <span class="form-control-feedback" v-show="nocoinciden">Las contraseñas no coinciden</span>
+           
+                    </div>   
+                    <!-- estas con clases de bootstrap para ponerle el estilo actual a los tipo checkbox,radio y select -->
+                    <div class="form-check">
+                        <label class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" required>
+                            <span class="custom-control-indicator"></span>
+                            <span class="custom-control-description"> Acepto terminos y condiciones</span>
+                        </label>    
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">Registrate!</button>
+
+               </form>
+            </div>
+            <!-- LA SEGUNDA COLUMNA ES EL CAROUSEL -->
+               <div class="col-12 col-lg-6 mt-3 align-self-center hidden-md-down">
+                    <div class="carousel slide elcarousel" id="carousel-login" data-ride="carousel">
+                        <!-- indicadores que indican la posicion de la foto actual -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#secondary-carousel" data-slid-to="0" class="active"></li>
+                            <li data-target="#secondary-carousel" data-slid-to="1"></li>
+                            <li data-target="#secondary-carousel" data-slid-to="2"></li>
+                        </ol>
+                        
+                        <!-- contenedor de las imagenes del carousel-->
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="carousel-caption d-block">
+                                    <h4>Titulo de la Imagen</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, possimus!</p>
+                                </div>
+                                <img src="{% static 'subir/img/carousel1.jpg' %}" alt="">
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-caption d-block">
+                                    <h4>Titulo de la Imagen</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, possimus!</p>
+                                </div>
+                                <img src="{% static 'subir/img/carousel2.jpg' %}" alt="">
+                            </div>
+                            <div class="carousel-item">
+                                <div class="carousel-caption d-block">
+                                    <h4>Titulo de la Imagen</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, possimus!</p>
+                                </div>
+                                <img src="{% static 'subir/img/carousel3.jpg' %}" alt="">
+                            </div>
+                        </div>
+                        <!-- las flechas para pasar de imagenes -->
+                        <!-- flecha previa -->
+                        <a href="#carousel-login" class="carousel-control-prev" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <!-- esto es para los dispositovs de lectura como las tables kindel -->
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <!-- flecha siguiente -->
+                        <a href="#carousel-login" class="carousel-control-next" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <!-- esto es para los dispositovs de lectura como las tables kindel -->
+                            <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
+            </div>
+      
+        </div>
+        
+        
+        
+    </div>
+</body>  
+      
+    <script src="{% static 'subir/js/vue.js'%}"></script>
+	<script src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+	
+	<script>
+new Vue({
+    el:'#contenedor',
+    data:{
+        
+        validacion:false,
+        error:false,
+        validacion2:false,
+        error2:false,
+        validacion3:false,
+        error3:false,
+        debil:false,
+        aceptable:false,
+        fuerte:false,
+        coinciden:false,
+        nocoinciden:false
+
+    },
+    methods:{
+        validacioncorreo(){
+           var patron= $('#validar').attr('pattern')
+             var val = $('#validar').val()
+             
+                var pat = new RegExp(patron)
+            
+            if(val==""){
+                   this.validacion=false
+                    this.error=false
+            }    
+                
+                
+            else if(!pat.exec(val)){
+                    this.validacion=false
+                    this.error=true
+                    
+                    
+                }
+            
+            else{
+                
+                this.error=false
+                this.validacion=true
+                
+               
+            }
+            
+            
+        },
+        
+        validacionuser(){
+            var patron= $('#nombreus').attr('pattern')
+             var val = $('#nombreus').val()
+             
+                var pat = new RegExp(patron)
+            
+            if(val==""){
+                   this.validacion2=false
+                    this.error2=false
+            }    
+                
+                
+            else if(!pat.exec(val)){
+                    this.validacion2=false
+                    this.error2=true
+                    
+                    
+                }
+            
+            else{
+                
+                this.error2=false
+                this.validacion2=true
+                
+               
+            }
+        
+    },
+        
+        validacionclave(){
+            
+
+            
+             var val1 = $('#clave').val()
+             var val2 = $('#confirmacionclave').val()
+
+            if(val1.length>4 && val1.length<9){
+                this.debil=true
+                this.aceptable=false
+                this.fuerte=false
+                   
+            }   
+            
+            else if(val1.length>8 && val1.length<16){
+                
+                this.debil=false
+                this.aceptable=true
+                this.fuerte=false
+            }
+            
+                        
+            else if(val1.length>15){
+                
+                this.debil=false
+                this.aceptable=false
+                this.fuerte=true
+            }
+                
+           else if(val1==""){
+                this.debil=false
+                this.aceptable=false
+                this.fuerte=false  
+                this.coinciden=false
+                this.nocoinciden=false
+            }
+            
+//nu
+                    
+            if(val1==val2){
+                
+                if(val1!=""){
+                    this.coinciden=true
+                    this.nocoinciden=false
+                }
+            }
+            
+                        
+            else if(val1=="" || val2==""){
+                this.coinciden=false
+                this.nocoinciden=false
+                
+            }
+            
+            
+            else if(val1!=val2){
+                this.coinciden=false
+                this.nocoinciden=true
+            }
+
+
+    } 
+        
+    }
+    
+    
+})    
+    
+</script>    
+  
+
+
+</html>

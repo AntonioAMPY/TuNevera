@@ -1,0 +1,191 @@
+{% extends 'subir/base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Categorias
+{% endblock %}
+       
+        {% block tabactive1 %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">INICIO</a>
+        </li>
+    <!-- tab de categorias --> 
+        
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'categorias' %}">CATEGORIAS</a>
+        </li>  
+        
+    <!-- tab de ve a cocinar! -->  
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cocinar' %}">VE A COCINAR!</a>
+        </li>  
+      
+    <!-- tab de album -->    
+      
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'album' %}" @click="aparecersecionxd">ALBUM</a>  
+        </li>
+        {% endblock %}
+        
+        
+        
+
+
+{% block contenedorotros %}
+      <div>
+                <div class="row justify-content-center my-3 px-0">
+                    <div class="col-10 col-xl-6 px-2">
+                        <!-- targetas ,es decir, bloques donde van la imagen de cada categoria con su titulo y descripcion con un estilo unico --> 
+                        <div class="card-columns">
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p1.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p2.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p3.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p4.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p5.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p6.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p7.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p1.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p2.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p3.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p4.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p5.jpg' %}" class="img-fluid">     
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p6.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p7.jpg' %}" class="img-fluid">
+                            </div>       
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p7.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p2.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p3.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p4.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p5.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p6.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p7.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p1.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p5.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p3.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p4.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p5.jpg' %}" class="img-fluid">     
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p6.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4 hidden-xl-up">
+                                <img src="{% static 'subir/img/p7.jpg' %}" class="img-fluid">
+                            </div>
+     
+                        </div>   
+                    </div>
+                    
+                    <div class="col-10 col-xl-6 hidden-lg-down">
+                        <!-- targetas ,es decir, bloques donde van la imagen de cada categoria con su titulo y descripcion con un estilo unico --> 
+                        <div class="card-columns">
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p1.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p2.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p3.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p4.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p5.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p6.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p7.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p1.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p2.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p3.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p4.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p5.jpg' %}" class="img-fluid">     
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p6.jpg' %}" class="img-fluid">
+                            </div>
+                            <div class="card mb-4">
+                                <img src="{% static 'subir/img/p7.jpg' %}" class="img-fluid">
+                            </div>
+                        </div>   
+                    </div>
+                
+                
+                </div>
+            </div>   
+                <!-- seccion de ve a cocinar del menu principal -->
+           
+           <!-- seccion de ve a cocinar del menu principal -->
+{% endblock %}   
+
+
+{% block scriptsexternos %} 
+<script src="{% static 'subir/js/buefy22.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'subir/js/bootstrap.min.js' %}"></script>
+{% endblock %}

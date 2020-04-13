@@ -1,0 +1,48 @@
+{% load static %}
+
+<div class="container">
+
+    <div class="rows">
+                
+     <div class="cols justify-content-center">
+                            
+         <div class="table-responsive">
+                                           
+             <table class="table table-striped table-hover table-sm">
+                 <thead>
+                     <tr>
+                        <th>Nombre_Receta</th>
+                        <th>Calorias</th>               
+                        <th>Carbohidratos</th>  
+                     </tr>
+                 </thead>
+                            
+             <tbody id="buscador_resultados">
+                 
+                {% for x in ingredientes %}
+                       
+                    <tr>
+                        <td>{{x.nombre}}</td>
+                        <td>{{x.calorias}}</td>
+                        <td>{{x.carbohidratos}}</td> 
+                     </tr>
+
+         
+
+              {% endfor %}
+
+
+
+             </tbody>
+                        
+             </table>
+             
+ 
+         </div>
+                    
+        </div>
+        
+     </div> 
+     
+</div>
+
